@@ -51,5 +51,6 @@ Requisiti: Python 3.10+ e `requests`.
 
 ## Licenza
 
-*Da decidere prima della pubblicazione.* Proposta: codice con licenza AGPL-3.0, dati derivati con CC BY-SA 4.0,
-con attribuzione ad ANAC come fonte.
+- **Codice** (script e pagine del sito): GNU Affero General Public License v3.0, vedi [`LICENSE`](LICENSE).
+- **Dati derivati** in `docs/dati/`: Creative Commons Attribuzione - Condividi allo stesso modo 4.0 (CC BY-SA 4.0),
+  vedi [`LICENSE-DATI.md`](LICENSE-DATI.md). Fonte dei dati originali: ANAC.

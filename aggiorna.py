@@ -487,6 +487,8 @@ def main():
     meta = {
         "generato": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "fonte": "ANAC - Piattaforma di Pubblicita' a Valore Legale (pubblicitalegale.anticorruzione.it)",
+        "licenza_dati": "CC BY-SA 4.0 - https://creativecommons.org/licenses/by-sa/4.0/",
+        "attribuzione": "Appalti Toscana (github.com/emanuelc89/appalti-toscana), elaborazione su dati ANAC",
         "finestra_giorni": args.giorni,
         "conteggi": {t: {"raccolti": s["raccolti"], "uniche": s["uniche"], "toscana": dict(s["cat"])}
                      for t, s in stat.items()},
