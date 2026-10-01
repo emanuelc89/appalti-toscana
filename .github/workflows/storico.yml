@@ -1,0 +1,54 @@
+name: Recupero storico
+
+on:
+  workflow_dispatch:
+    inputs:
+      mesi:
+        description: "Fino a quanti mesi indietro recuperare (12 = un anno)"
+        default: "12"
+      primo:
+        description: "Da quale mese ripartire (1 = il mese scorso; usalo per riprendere dopo un'interruzione)"
+        default: "1"
+
+permissions:
+  contents: write
+
+# Stesso gruppo dell'aggiornamento quotidiano: non girano mai insieme
+concurrency:
+  group: aggiorna-dati
+  cancel-in-progress: false
+
+jobs:
+  storico:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Installa le dipendenze
+        run: pip install requests
+
+      - name: Recupero mese per mese
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          OGGI_MESE=$(date -u +%Y-%m-01)
+          for i in $(seq "${{ github.event.inputs.primo }}" "${{ github.event.inputs.mesi }}"); do
+            DAL=$(date -u -d "$OGGI_MESE -$i month" +%Y-%m-%d)
+            AL=$(date -u -d "$DAL +1 month -1 day" +%Y-%m-%d)
+            echo "::group::Mese $i: $DAL - $AL"
+            python aggiorna.py --dal "$DAL" --al "$AL" --senza-cpv
+            git add docs/dati cache
+            if git diff --cached --quiet; then
+              echo "Nessuna modifica per $DAL - $AL"
+            else
+              git commit -m "dati: storico $DAL - $AL"
+              git pull --rebase
+              git push
+            fi
+            echo "::endgroup::"
+          done

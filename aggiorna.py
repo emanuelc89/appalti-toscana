@@ -1,10 +1,11 @@
 """
-aggiorna.py - Pipeline di produzione: raccolta incrementale ANAC (Toscana) + archivio mensile.
+aggiorna.py - Pipeline di produzione: raccolta incrementale ANAC (Toscana) + archivio giornaliero.
 
 Uso:
-    python aggiorna.py                 # ultimi 3 giorni (uso quotidiano)
-    python aggiorna.py --giorni 14     # primo popolamento (circa 10-12 minuti)
-    python aggiorna.py --senza-cpv     # salta i dettagli per i CPV (test veloci)
+    python aggiorna.py                                    # ultimi 3 giorni (uso quotidiano)
+    python aggiorna.py --giorni 14                        # ultimi 14 giorni
+    python aggiorna.py --dal 2025-10-01 --al 2025-10-31   # un intervallo preciso (recupero dello storico)
+    python aggiorna.py --senza-cpv                        # salta i dettagli per i CPV
 
 Output (cartella 'docs/dati', servita da GitHub Pages):
     archivio/AAAA-MM-GG.json   record toscani pubblicati quel giorno, unione tra una esecuzione e l'altra
@@ -52,7 +53,7 @@ COMUNI_URL = "https://raw.githubusercontent.com/matteocontrini/comuni-json/maste
 
 PAUSA = 1.2
 SIZE = 200
-MAX_PAGINE = 400
+MAX_PAGINE = 1000
 
 TEMPLATES = [
     ("4", "bando"),
@@ -202,7 +203,7 @@ def carica_comuni():
 
 # ---------- raccolta ----------
 
-def params(template, start, end, token=None):
+def params(template, start, end, token=None, archivio=False):
     p = {
         "codiceScheda": template,
         "dataPubblicazioneStart": start,
@@ -214,40 +215,50 @@ def params(template, start, end, token=None):
     if token:
         p["direzionePaginazione"] = "AVANTI"
         p["tokenPaginazione"] = token
+    if archivio:
+        p["ricercaArchivio"] = "true"
     return p
 
 
-def raccogli(template, start, end):
+def pagine(template, start, end):
+    """Restituisce una pagina di avvisi nuovi alla volta (paginazione a token), senza tenere tutto in memoria."""
+    archivio = False
     dati = get("/avvisi-full-text", params(template, start, end))
-    if not dati:
-        return []
+    if dati is None:
+        return
     cont = dati.get("content") or []
     count = dati.get("count")
-    print(f"   prima pagina: {len(cont)} risultati, count dichiarato {count}")
-    visti = {a.get("idAvviso"): a for a in cont}
-    token = dati.get("lastPaginationToken")
-    pagina = 1
-    while token and cont and len(cont) >= SIZE and pagina < MAX_PAGINE:
-        dati = get("/avvisi-full-text", params(template, start, end, token))
-        if not dati:
+    if not cont and count:
+        print("   ricerca normale vuota ma count > 0: riprovo con la ricerca d'archivio")
+        archivio = True
+        dati = get("/avvisi-full-text", params(template, start, end, archivio=True))
+        if dati is None:
+            return
+        cont = dati.get("content") or []
+        count = dati.get("count")
+    print(f"   prima pagina: {len(cont)} risultati, count dichiarato {count}" + (" (archivio)" if archivio else ""))
+    visti = set()
+    pagina = 0
+    while True:
+        nuovi = [a for a in cont if a.get("idAvviso") not in visti]
+        visti.update(a.get("idAvviso") for a in nuovi)
+        if nuovi:
+            yield nuovi
+        pagina += 1
+        if pagina % 25 == 0:
+            print(f"   pagina {pagina}: totale {len(visti)}")
+        token = dati.get("lastPaginationToken")
+        if not nuovi or not token or len(cont) < SIZE or pagina >= MAX_PAGINE:
+            break
+        dati = get("/avvisi-full-text", params(template, start, end, token, archivio))
+        if dati is None:
             print("   Raccolta interrotta (errore): dati parziali, l'archivio resta comunque coerente.")
             break
         cont = dati.get("content") or []
-        nuovi = 0
-        for a in cont:
-            if a.get("idAvviso") not in visti:
-                visti[a.get("idAvviso")] = a
-                nuovi += 1
-        if pagina % 10 == 0:
-            print(f"   pagina {pagina}: totale {len(visti)}")
-        if nuovi == 0:
-            break
-        token = dati.get("lastPaginationToken")
-        pagina += 1
     print(f"   raccolti {len(visti)} avvisi in {pagina} pagine")
     if count and abs(len(visti) - count) > 0.1 * count:
         print(f"   NOTA: raccolti {len(visti)} contro count dichiarato {count} (il count e' una stima).")
-    return list(visti.values())
+
 
 
 # ---------- estrazione e classificazione ----------
@@ -442,42 +453,60 @@ def riga(r):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--giorni", type=int, default=3, help="giorni indietro da oggi (default 3)")
+    ap.add_argument("--dal", help="data iniziale AAAA-MM-GG (per il recupero dello storico)")
+    ap.add_argument("--al", help="data finale AAAA-MM-GG (default: oggi)")
     ap.add_argument("--senza-cpv", action="store_true", help="non scaricare i dettagli per i CPV")
     args = ap.parse_args()
 
     t0 = time.time()
     toscani, prov_canon, tutte_prov, regioni_per_nome, elenco_comuni = carica_comuni()
-    print(f"Comuni toscani: {len(toscani)} | finestra: ultimi {args.giorni} giorni")
-
     oggi = date.today()
-    start = (oggi - timedelta(days=args.giorni)).strftime("%d/%m/%Y")
-    end = oggi.strftime("%d/%m/%Y")
+    if args.dal:
+        d0 = date.fromisoformat(args.dal)
+        d1 = date.fromisoformat(args.al) if args.al else oggi
+    else:
+        d1 = oggi
+        d0 = oggi - timedelta(days=args.giorni)
+    if d0 > d1:
+        raise SystemExit("Errore: --dal e' successiva ad --al")
+    start, end = d0.strftime("%d/%m/%Y"), d1.strftime("%d/%m/%Y")
+    print(f"Comuni toscani: {len(toscani)} | finestra: {d0.isoformat()} - {d1.isoformat()}")
 
-    tutti = []
+    tosc = []
     stat = {}
+    esclusi = []
+    n_esclusi = 0
     for template, tipo in TEMPLATES:
         print(f"\n=== Template {template} ({tipo}) {start} - {end} ===")
-        grezzi = raccogli(template, start, end)
         ultimi = {}
         versioni = Counter()
-        for a in grezzi:
-            r = estrai(a, template, tipo)
-            k = r["procedura"] or r["id"]
-            versioni[k] += 1
-            if k not in ultimi or r["pubblicato"] >= ultimi[k]["pubblicato"]:
-                ultimi[k] = r
+        chiavi_tutte = set()
+        raccolti = 0
+        for blocco in pagine(template, start, end):
+            for a in blocco:
+                raccolti += 1
+                r = estrai(a, template, tipo)
+                k = r["procedura"] or r["id"]
+                chiavi_tutte.add(k)
+                r["geo"] = classifica(r, toscani, prov_canon, tutte_prov, regioni_per_nome)
+                if not r["geo"]:
+                    if any(norm(lu) in toscani for lu in r["luoghi"]):
+                        n_esclusi += 1
+                        if len(esclusi) < 15:
+                            esclusi.append(r)
+                    continue
+                versioni[k] += 1
+                if k not in ultimi or r["pubblicato"] >= ultimi[k]["pubblicato"]:
+                    ultimi[k] = r
         for k, r in ultimi.items():
             r["versioni"] = versioni[k]
-            r["geo"] = classifica(r, toscani, prov_canon, tutte_prov, regioni_per_nome)
-            r["province"] = province_record(r, toscani, prov_canon) if r["geo"] else []
-            r["comuni_toscani"] = [lu for lu in r["luoghi"] if norm(lu) in toscani] if r["geo"] else []
+            r["province"] = province_record(r, toscani, prov_canon)
+            r["comuni_toscani"] = [lu for lu in r["luoghi"] if norm(lu) in toscani]
             r["comuni_slug"] = [slug(lu) for lu in r["comuni_toscani"]]
-        unici = list(ultimi.values())
-        stat[template] = {"raccolti": len(grezzi), "uniche": len(unici),
-                          "cat": Counter(r["geo"] for r in unici if r["geo"])}
-        tutti.extend(unici)
+        stat[template] = {"raccolti": raccolti, "uniche": len(chiavi_tutte),
+                          "cat": Counter(r["geo"] for r in ultimi.values())}
+        tosc.extend(ultimi.values())
 
-    tosc = [r for r in tutti if r["geo"]]
     if not args.senza_cpv:
         arricchisci_cpv(tosc)
 
@@ -489,7 +518,7 @@ def main():
         "fonte": "ANAC - Piattaforma di Pubblicita' a Valore Legale (pubblicitalegale.anticorruzione.it)",
         "licenza_dati": "CC BY-SA 4.0 - https://creativecommons.org/licenses/by-sa/4.0/",
         "attribuzione": "Appalti Toscana (github.com/emanuelc89/appalti-toscana), elaborazione su dati ANAC",
-        "finestra_giorni": args.giorni,
+        "ultima_finestra": {"dal": d0.isoformat(), "al": d1.isoformat()},
         "conteggi": {t: {"raccolti": s["raccolti"], "uniche": s["uniche"], "toscana": dict(s["cat"])}
                      for t, s in stat.items()},
         "archivio_nuovi_record": nuovi,
@@ -512,26 +541,16 @@ def main():
         print(f"  {etichetta}: {len(cop)} comuni")
 
     print("\n=== Controllo: avvisi con comune toscano ESCLUSI dalla Toscana (diagnosi) ===")
-    esclusi = [r for r in tutti if not r["geo"] and any(norm(lu) in toscani for lu in r["luoghi"])]
-    print(f"  totale: {len(esclusi)}")
-    for r in esclusi[:15]:
+    print(f"  totale: {n_esclusi}")
+    for r in esclusi:
         print(f"  [{r['template']}] {r['committente']} | luoghi={r['luoghi'][:3]} | nuts={r['nuts'][:3]}")
 
     print("\n=== Empolese Valdelsa ===")
     ev = {norm(x) for x in EMPOLESE}
-    righe_ev = [r for r in sorted(tutti, key=lambda x: x["pubblicato"], reverse=True)
+    righe_ev = [r for r in sorted(tosc, key=lambda x: x["pubblicato"], reverse=True)
                 if any(norm(lu) in ev for lu in r["luoghi"]) or "EMPOLESE" in norm(r["committente"])]
-    per_tipo = Counter(r["tipo"] for r in righe_ev)
-    print("  " + ", ".join(f"{k}={v}" for k, v in per_tipo.items()))
-    for r in righe_ev[:12]:
-        print("  " + riga(r))
-
-    print("\n=== Esiti: vincitori e ribasso ===")
-    esiti = [r for r in tosc if r["tipo"] == "esito"]
-    print(f"  esiti toscani: {len(esiti)} | con aggiudicatari (societa'): "
-          f"{sum(1 for r in esiti if r['aggiudicatari'])} | con ribasso: "
-          f"{sum(1 for r in esiti if r['ribasso_pct'] is not None)}")
-    for r in esiti[:8]:
+    print("  " + (", ".join(f"{k}={v}" for k, v in Counter(r["tipo"] for r in righe_ev).items()) or "nessuno"))
+    for r in righe_ev[:8]:
         print("  " + riga(r))
 
     print("\n=== Controlli di qualita' ===")
@@ -539,6 +558,9 @@ def main():
     print(f"  anomalia scadenza: {sum(1 for r in tosc if r['anomalia_scadenza'])}")
     print(f"  multiregionali (M): {sum(1 for r in tosc if r['geo'] == 'M')} | "
           f"ambigui (C): {sum(1 for r in tosc if r['geo'] == 'C')}")
+    esiti = [r for r in tosc if r["tipo"] == "esito"]
+    print(f"  esiti: {len(esiti)} | con aggiudicatari {sum(1 for r in esiti if r['aggiudicatari'])} | "
+          f"con ribasso {sum(1 for r in esiti if r['ribasso_pct'] is not None)}")
     ad = [r for r in tosc if r["tipo"] == "affidamento_diretto"]
     print(f"  affidamenti diretti: aggiudicatari pubblicabili {sum(len(r['aggiudicatari']) for r in ad)} | "
           f"nascosti {sum(r['aggiudicatari_nascosti'] for r in ad)}")
@@ -546,7 +568,6 @@ def main():
     print(f"  CPV con codice: {sum(1 for r in opp if ha_codice_cpv(r))} su {len(opp)}")
 
     print(f"\nTempo totale: {time.time() - t0:.0f} secondi")
-    print("Fatto. Incolla qui in chat tutto l'output della console.")
 
 
 if __name__ == "__main__":
