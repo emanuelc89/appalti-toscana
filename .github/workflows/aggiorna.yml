@@ -1,0 +1,48 @@
+name: Aggiorna dati ANAC
+
+on:
+  schedule:
+    # ANAC pubblica nei giorni feriali: due passaggi al giorno, orari UTC
+    - cron: "30 8 * * 1-5"
+    - cron: "0 16 * * 1-5"
+  workflow_dispatch:
+    inputs:
+      giorni:
+        description: "Giorni indietro da raccogliere (14 per il primo popolamento)"
+        default: "3"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aggiorna-dati
+  cancel-in-progress: false
+
+jobs:
+  aggiorna:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Installa le dipendenze
+        run: pip install requests
+
+      - name: Raccolta dati ANAC
+        run: python aggiorna.py --giorni "${{ github.event.inputs.giorni || '3' }}"
+
+      - name: Commit dei dati
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/dati cache
+          if git diff --cached --quiet; then
+            echo "Nessuna modifica ai dati."
+          else
+            git commit -m "dati: aggiornamento $(date -u +%Y-%m-%d)"
+            git push
+          fi
