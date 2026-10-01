@@ -1,0 +1,1367 @@
+[
+ {
+  "nome": "Abbadia San Salvatore",
+  "slug": "abbadia-san-salvatore",
+  "provincia": "Siena"
+ },
+ {
+  "nome": "Abetone Cutigliano",
+  "slug": "abetone-cutigliano",
+  "provincia": "Pistoia"
+ },
+ {
+  "nome": "Agliana",
+  "slug": "agliana",
+  "provincia": "Pistoia"
+ },
+ {
+  "nome": "Altopascio",
+  "slug": "altopascio",
+  "provincia": "Lucca"
+ },
+ {
+  "nome": "Anghiari",
+  "slug": "anghiari",
+  "provincia": "Arezzo"
+ },
+ {
+  "nome": "Arcidosso",
+  "slug": "arcidosso",
+  "provincia": "Grosseto"
+ },
+ {
+  "nome": "Arezzo",
+  "slug": "arezzo",
+  "provincia": "Arezzo"
+ },
+ {
+  "nome": "Asciano",
+  "slug": "asciano",
+  "provincia": "Siena"
+ },
+ {
+  "nome": "Aulla",
+  "slug": "aulla",
+  "provincia": "Massa-Carrara"
+ },
+ {
+  "nome": "Badia Tedalda",
+  "slug": "badia-tedalda",
+  "provincia": "Arezzo"
+ },
+ {
+  "nome": "Bagni di Lucca",
+  "slug": "bagni-di-lucca",
+  "provincia": "Lucca"
+ },
+ {
+  "nome": "Bagno a Ripoli",
+  "slug": "bagno-a-ripoli",
+  "provincia": "Firenze"
+ },
+ {
+  "nome": "Bagnone",
+  "slug": "bagnone",
+  "provincia": "Massa-Carrara"
+ },
+ {
+  "nome": "Barberino Tavarnelle",
+  "slug": "barberino-tavarnelle",
+  "provincia": "Firenze"
+ },
+ {
+  "nome": "Barberino di Mugello",
+  "slug": "barberino-di-mugello",
+  "provincia": "Firenze"
+ },
+ {
+  "nome": "Barga",
+  "slug": "barga",
+  "provincia": "Lucca"
+ },
+ {
+  "nome": "Bibbiena",
+  "slug": "bibbiena",
+  "provincia": "Arezzo"
+ },
+ {
+  "nome": "Bibbona",
+  "slug": "bibbona",
+  "provincia": "Livorno"
+ },
+ {
+  "nome": "Bientina",
+  "slug": "bientina",
+  "provincia": "Pisa"
+ },
+ {
+  "nome": "Borgo San Lorenzo",
+  "slug": "borgo-san-lorenzo",
+  "provincia": "Firenze"
+ },
+ {
+  "nome": "Borgo a Mozzano",
+  "slug": "borgo-a-mozzano",
+  "provincia": "Lucca"
+ },
+ {
+  "nome": "Bucine",
+  "slug": "bucine",
+  "provincia": "Arezzo"
+ },
+ {
+  "nome": "Buggiano",
+  "slug": "buggiano",
+  "provincia": "Pistoia"
+ },
+ {
+  "nome": "Buonconvento",
+  "slug": "buonconvento",
+  "provincia": "Siena"
+ },
+ {
+  "nome": "Buti",
+  "slug": "buti",
+  "provincia": "Pisa"
+ },
+ {
+  "nome": "Calci",
+  "slug": "calci",
+  "provincia": "Pisa"
+ },
+ {
+  "nome": "Calcinaia",
+  "slug": "calcinaia",
+  "provincia": "Pisa"
+ },
+ {
+  "nome": "Calenzano",
+  "slug": "calenzano",
+  "provincia": "Firenze"
+ },
+ {
+  "nome": "Camaiore",
+  "slug": "camaiore",
+  "provincia": "Lucca"
+ },
+ {
+  "nome": "Campagnatico",
+  "slug": "campagnatico",
+  "provincia": "Grosseto"
+ },
+ {
+  "nome": "Campi Bisenzio",
+  "slug": "campi-bisenzio",
+  "provincia": "Firenze"
+ },
+ {
+  "nome": "Campiglia Marittima",
+  "slug": "campiglia-marittima",
+  "provincia": "Livorno"
+ },
+ {
+  "nome": "Campo nell'Elba",
+  "slug": "campo-nell-elba",
+  "provincia": "Livorno"
+ },
+ {
+  "nome": "Camporgiano",
+  "slug": "camporgiano",
+  "provincia": "Lucca"
+ },
+ {
+  "nome": "Cantagallo",
+  "slug": "cantagallo",
+  "provincia": "Prato"
+ },
+ {
+  "nome": "Capalbio",
+  "slug": "capalbio",
+  "provincia": "Grosseto"
+ },
+ {
+  "nome": "Capannoli",
+  "slug": "capannoli",
+  "provincia": "Pisa"
+ },
+ {
+  "nome": "Capannori",
+  "slug": "capannori",
+  "provincia": "Lucca"
+ },
+ {
+  "nome": "Capoliveri",
+  "slug": "capoliveri",
+  "provincia": "Livorno"
+ },
+ {
+  "nome": "Capolona",
+  "slug": "capolona",
+  "provincia": "Arezzo"
+ },
+ {
+  "nome": "Capraia Isola",
+  "slug": "capraia-isola",
+  "provincia": "Livorno"
+ },
+ {
+  "nome": "Capraia e Limite",
+  "slug": "capraia-e-limite",
+  "provincia": "Firenze"
+ },
+ {
+  "nome": "Caprese Michelangelo",
+  "slug": "caprese-michelangelo",
+  "provincia": "Arezzo"
+ },
+ {
+  "nome": "Careggine",
+  "slug": "careggine",
+  "provincia": "Lucca"
+ },
+ {
+  "nome": "Carmignano",
+  "slug": "carmignano",
+  "provincia": "Prato"
+ },
+ {
+  "nome": "Carrara",
+  "slug": "carrara",
+  "provincia": "Massa-Carrara"
+ },
+ {
+  "nome": "Casale Marittimo",
+  "slug": "casale-marittimo",
+  "provincia": "Pisa"
+ },
+ {
+  "nome": "Casciana Terme Lari",
+  "slug": "casciana-terme-lari",
+  "provincia": "Pisa"
+ },
+ {
+  "nome": "Cascina",
+  "slug": "cascina",
+  "provincia": "Pisa"
+ },
+ {
+  "nome": "Casola in Lunigiana",
+  "slug": "casola-in-lunigiana",
+  "provincia": "Massa-Carrara"
+ },
+ {
+  "nome": "Casole d'Elsa",
+  "slug": "casole-d-elsa",
+  "provincia": "Siena"
+ },
+ {
+  "nome": "Castagneto Carducci",
+  "slug": "castagneto-carducci",
+  "provincia": "Livorno"
+ },
+ {
+  "nome": "Castel Focognano",
+  "slug": "castel-focognano",
+  "provincia": "Arezzo"
+ },
+ {
+  "nome": "Castel San Niccolò",
+  "slug": "castel-san-niccolo",
+  "provincia": "Arezzo"
+ },
+ {
+  "nome": "Castel del Piano",
+  "slug": "castel-del-piano",
+  "provincia": "Grosseto"
+ },
+ {
+  "nome": "Castelfiorentino",
+  "slug": "castelfiorentino",
+  "provincia": "Firenze"
+ },
+ {
+  "nome": "Castelfranco Piandiscò",
+  "slug": "castelfranco-piandisco",
+  "provincia": "Arezzo"
+ },
+ {
+  "nome": "Castelfranco di Sotto",
+  "slug": "castelfranco-di-sotto",
+  "provincia": "Pisa"
+ },
+ {
+  "nome": "Castell'Azzara",
+  "slug": "castell-azzara",
+  "provincia": "Grosseto"
+ },
+ {
+  "nome": "Castellina Marittima",
+  "slug": "castellina-marittima",
+  "provincia": "Pisa"
+ },
+ {
+  "nome": "Castellina in Chianti",
+  "slug": "castellina-in-chianti",
+  "provincia": "Siena"
+ },
+ {
+  "nome": "Castelnuovo Berardenga",
+  "slug": "castelnuovo-berardenga",
+  "provincia": "Siena"
+ },
+ {
+  "nome": "Castelnuovo di Garfagnana",
+  "slug": "castelnuovo-di-garfagnana",
+  "provincia": "Lucca"
+ },
+ {
+  "nome": "Castelnuovo di Val di Cecina",
+  "slug": "castelnuovo-di-val-di-cecina",
+  "provincia": "Pisa"
+ },
+ {
+  "nome": "Castiglion Fibocchi",
+  "slug": "castiglion-fibocchi",
+  "provincia": "Arezzo"
+ },
+ {
+  "nome": "Castiglion Fiorentino",
+  "slug": "castiglion-fiorentino",
+  "provincia": "Arezzo"
+ },
+ {
+  "nome": "Castiglione d'Orcia",
+  "slug": "castiglione-d-orcia",
+  "provincia": "Siena"
+ },
+ {
+  "nome": "Castiglione della Pescaia",
+  "slug": "castiglione-della-pescaia",
+  "provincia": "Grosseto"
+ },
+ {
+  "nome": "Castiglione di Garfagnana",
+  "slug": "castiglione-di-garfagnana",
+  "provincia": "Lucca"
+ },
+ {
+  "nome": "Cavriglia",
+  "slug": "cavriglia",
+  "provincia": "Arezzo"
+ },
+ {
+  "nome": "Cecina",
+  "slug": "cecina",
+  "provincia": "Livorno"
+ },
+ {
+  "nome": "Cerreto Guidi",
+  "slug": "cerreto-guidi",
+  "provincia": "Firenze"
+ },
+ {
+  "nome": "Certaldo",
+  "slug": "certaldo",
+  "provincia": "Firenze"
+ },
+ {
+  "nome": "Cetona",
+  "slug": "cetona",
+  "provincia": "Siena"
+ },
+ {
+  "nome": "Chianciano Terme",
+  "slug": "chianciano-terme",
+  "provincia": "Siena"
+ },
+ {
+  "nome": "Chianni",
+  "slug": "chianni",
+  "provincia": "Pisa"
+ },
+ {
+  "nome": "Chiesina Uzzanese",
+  "slug": "chiesina-uzzanese",
+  "provincia": "Pistoia"
+ },
+ {
+  "nome": "Chitignano",
+  "slug": "chitignano",
+  "provincia": "Arezzo"
+ },
+ {
+  "nome": "Chiusdino",
+  "slug": "chiusdino",
+  "provincia": "Siena"
+ },
+ {
+  "nome": "Chiusi",
+  "slug": "chiusi",
+  "provincia": "Siena"
+ },
+ {
+  "nome": "Chiusi della Verna",
+  "slug": "chiusi-della-verna",
+  "provincia": "Arezzo"
+ },
+ {
+  "nome": "Cinigiano",
+  "slug": "cinigiano",
+  "provincia": "Grosseto"
+ },
+ {
+  "nome": "Civitella Paganico",
+  "slug": "civitella-paganico",
+  "provincia": "Grosseto"
+ },
+ {
+  "nome": "Civitella in Val di Chiana",
+  "slug": "civitella-in-val-di-chiana",
+  "provincia": "Arezzo"
+ },
+ {
+  "nome": "Colle di Val d'Elsa",
+  "slug": "colle-di-val-d-elsa",
+  "provincia": "Siena"
+ },
+ {
+  "nome": "Collesalvetti",
+  "slug": "collesalvetti",
+  "provincia": "Livorno"
+ },
+ {
+  "nome": "Comano",
+  "slug": "comano",
+  "provincia": "Massa-Carrara"
+ },
+ {
+  "nome": "Coreglia Antelminelli",
+  "slug": "coreglia-antelminelli",
+  "provincia": "Lucca"
+ },
+ {
+  "nome": "Cortona",
+  "slug": "cortona",
+  "provincia": "Arezzo"
+ },
+ {
+  "nome": "Crespina Lorenzana",
+  "slug": "crespina-lorenzana",
+  "provincia": "Pisa"
+ },
+ {
+  "nome": "Dicomano",
+  "slug": "dicomano",
+  "provincia": "Firenze"
+ },
+ {
+  "nome": "Empoli",
+  "slug": "empoli",
+  "provincia": "Firenze"
+ },
+ {
+  "nome": "Fabbriche di Vergemoli",
+  "slug": "fabbriche-di-vergemoli",
+  "provincia": "Lucca"
+ },
+ {
+  "nome": "Fauglia",
+  "slug": "fauglia",
+  "provincia": "Pisa"
+ },
+ {
+  "nome": "Fiesole",
+  "slug": "fiesole",
+  "provincia": "Firenze"
+ },
+ {
+  "nome": "Figline e Incisa Valdarno",
+  "slug": "figline-e-incisa-valdarno",
+  "provincia": "Firenze"
+ },
+ {
+  "nome": "Filattiera",
+  "slug": "filattiera",
+  "provincia": "Massa-Carrara"
+ },
+ {
+  "nome": "Firenze",
+  "slug": "firenze",
+  "provincia": "Firenze"
+ },
+ {
+  "nome": "Firenzuola",
+  "slug": "firenzuola",
+  "provincia": "Firenze"
+ },
+ {
+  "nome": "Fivizzano",
+  "slug": "fivizzano",
+  "provincia": "Massa-Carrara"
+ },
+ {
+  "nome": "Foiano della Chiana",
+  "slug": "foiano-della-chiana",
+  "provincia": "Arezzo"
+ },
+ {
+  "nome": "Follonica",
+  "slug": "follonica",
+  "provincia": "Grosseto"
+ },
+ {
+  "nome": "Forte dei Marmi",
+  "slug": "forte-dei-marmi",
+  "provincia": "Lucca"
+ },
+ {
+  "nome": "Fosciandora",
+  "slug": "fosciandora",
+  "provincia": "Lucca"
+ },
+ {
+  "nome": "Fosdinovo",
+  "slug": "fosdinovo",
+  "provincia": "Massa-Carrara"
+ },
+ {
+  "nome": "Fucecchio",
+  "slug": "fucecchio",
+  "provincia": "Firenze"
+ },
+ {
+  "nome": "Gaiole in Chianti",
+  "slug": "gaiole-in-chianti",
+  "provincia": "Siena"
+ },
+ {
+  "nome": "Gallicano",
+  "slug": "gallicano",
+  "provincia": "Lucca"
+ },
+ {
+  "nome": "Gambassi Terme",
+  "slug": "gambassi-terme",
+  "provincia": "Firenze"
+ },
+ {
+  "nome": "Gavorrano",
+  "slug": "gavorrano",
+  "provincia": "Grosseto"
+ },
+ {
+  "nome": "Greve in Chianti",
+  "slug": "greve-in-chianti",
+  "provincia": "Firenze"
+ },
+ {
+  "nome": "Grosseto",
+  "slug": "grosseto",
+  "provincia": "Grosseto"
+ },
+ {
+  "nome": "Guardistallo",
+  "slug": "guardistallo",
+  "provincia": "Pisa"
+ },
+ {
+  "nome": "Impruneta",
+  "slug": "impruneta",
+  "provincia": "Firenze"
+ },
+ {
+  "nome": "Isola del Giglio",
+  "slug": "isola-del-giglio",
+  "provincia": "Grosseto"
+ },
+ {
+  "nome": "Lajatico",
+  "slug": "lajatico",
+  "provincia": "Pisa"
+ },
+ {
+  "nome": "Lamporecchio",
+  "slug": "lamporecchio",
+  "provincia": "Pistoia"
+ },
+ {
+  "nome": "Larciano",
+  "slug": "larciano",
+  "provincia": "Pistoia"
+ },
+ {
+  "nome": "Lastra a Signa",
+  "slug": "lastra-a-signa",
+  "provincia": "Firenze"
+ },
+ {
+  "nome": "Laterina Pergine Valdarno",
+  "slug": "laterina-pergine-valdarno",
+  "provincia": "Arezzo"
+ },
+ {
+  "nome": "Licciana Nardi",
+  "slug": "licciana-nardi",
+  "provincia": "Massa-Carrara"
+ },
+ {
+  "nome": "Livorno",
+  "slug": "livorno",
+  "provincia": "Livorno"
+ },
+ {
+  "nome": "Londa",
+  "slug": "londa",
+  "provincia": "Firenze"
+ },
+ {
+  "nome": "Loro Ciuffenna",
+  "slug": "loro-ciuffenna",
+  "provincia": "Arezzo"
+ },
+ {
+  "nome": "Lucca",
+  "slug": "lucca",
+  "provincia": "Lucca"
+ },
+ {
+  "nome": "Lucignano",
+  "slug": "lucignano",
+  "provincia": "Arezzo"
+ },
+ {
+  "nome": "Magliano in Toscana",
+  "slug": "magliano-in-toscana",
+  "provincia": "Grosseto"
+ },
+ {
+  "nome": "Manciano",
+  "slug": "manciano",
+  "provincia": "Grosseto"
+ },
+ {
+  "nome": "Marciana",
+  "slug": "marciana",
+  "provincia": "Livorno"
+ },
+ {
+  "nome": "Marciana Marina",
+  "slug": "marciana-marina",
+  "provincia": "Livorno"
+ },
+ {
+  "nome": "Marciano della Chiana",
+  "slug": "marciano-della-chiana",
+  "provincia": "Arezzo"
+ },
+ {
+  "nome": "Marliana",
+  "slug": "marliana",
+  "provincia": "Pistoia"
+ },
+ {
+  "nome": "Marradi",
+  "slug": "marradi",
+  "provincia": "Firenze"
+ },
+ {
+  "nome": "Massa",
+  "slug": "massa",
+  "provincia": "Massa-Carrara"
+ },
+ {
+  "nome": "Massa Marittima",
+  "slug": "massa-marittima",
+  "provincia": "Grosseto"
+ },
+ {
+  "nome": "Massa e Cozzile",
+  "slug": "massa-e-cozzile",
+  "provincia": "Pistoia"
+ },
+ {
+  "nome": "Massarosa",
+  "slug": "massarosa",
+  "provincia": "Lucca"
+ },
+ {
+  "nome": "Minucciano",
+  "slug": "minucciano",
+  "provincia": "Lucca"
+ },
+ {
+  "nome": "Molazzana",
+  "slug": "molazzana",
+  "provincia": "Lucca"
+ },
+ {
+  "nome": "Monsummano Terme",
+  "slug": "monsummano-terme",
+  "provincia": "Pistoia"
+ },
+ {
+  "nome": "Montaione",
+  "slug": "montaione",
+  "provincia": "Firenze"
+ },
+ {
+  "nome": "Montalcino",
+  "slug": "montalcino",
+  "provincia": "Siena"
+ },
+ {
+  "nome": "Montale",
+  "slug": "montale",
+  "provincia": "Pistoia"
+ },
+ {
+  "nome": "Monte Argentario",
+  "slug": "monte-argentario",
+  "provincia": "Grosseto"
+ },
+ {
+  "nome": "Monte San Savino",
+  "slug": "monte-san-savino",
+  "provincia": "Arezzo"
+ },
+ {
+  "nome": "Montecarlo",
+  "slug": "montecarlo",
+  "provincia": "Lucca"
+ },
+ {
+  "nome": "Montecatini Val di Cecina",
+  "slug": "montecatini-val-di-cecina",
+  "provincia": "Pisa"
+ },
+ {
+  "nome": "Montecatini-Terme",
+  "slug": "montecatini-terme",
+  "provincia": "Pistoia"
+ },
+ {
+  "nome": "Montelupo Fiorentino",
+  "slug": "montelupo-fiorentino",
+  "provincia": "Firenze"
+ },
+ {
+  "nome": "Montemignaio",
+  "slug": "montemignaio",
+  "provincia": "Arezzo"
+ },
+ {
+  "nome": "Montemurlo",
+  "slug": "montemurlo",
+  "provincia": "Prato"
+ },
+ {
+  "nome": "Montepulciano",
+  "slug": "montepulciano",
+  "provincia": "Siena"
+ },
+ {
+  "nome": "Monterchi",
+  "slug": "monterchi",
+  "provincia": "Arezzo"
+ },
+ {
+  "nome": "Monteriggioni",
+  "slug": "monteriggioni",
+  "provincia": "Siena"
+ },
+ {
+  "nome": "Monteroni d'Arbia",
+  "slug": "monteroni-d-arbia",
+  "provincia": "Siena"
+ },
+ {
+  "nome": "Monterotondo Marittimo",
+  "slug": "monterotondo-marittimo",
+  "provincia": "Grosseto"
+ },
+ {
+  "nome": "Montescudaio",
+  "slug": "montescudaio",
+  "provincia": "Pisa"
+ },
+ {
+  "nome": "Montespertoli",
+  "slug": "montespertoli",
+  "provincia": "Firenze"
+ },
+ {
+  "nome": "Montevarchi",
+  "slug": "montevarchi",
+  "provincia": "Arezzo"
+ },
+ {
+  "nome": "Monteverdi Marittimo",
+  "slug": "monteverdi-marittimo",
+  "provincia": "Pisa"
+ },
+ {
+  "nome": "Monticiano",
+  "slug": "monticiano",
+  "provincia": "Siena"
+ },
+ {
+  "nome": "Montieri",
+  "slug": "montieri",
+  "provincia": "Grosseto"
+ },
+ {
+  "nome": "Montignoso",
+  "slug": "montignoso",
+  "provincia": "Massa-Carrara"
+ },
+ {
+  "nome": "Montopoli in Val d'Arno",
+  "slug": "montopoli-in-val-d-arno",
+  "provincia": "Pisa"
+ },
+ {
+  "nome": "Mulazzo",
+  "slug": "mulazzo",
+  "provincia": "Massa-Carrara"
+ },
+ {
+  "nome": "Murlo",
+  "slug": "murlo",
+  "provincia": "Siena"
+ },
+ {
+  "nome": "Orbetello",
+  "slug": "orbetello",
+  "provincia": "Grosseto"
+ },
+ {
+  "nome": "Orciano Pisano",
+  "slug": "orciano-pisano",
+  "provincia": "Pisa"
+ },
+ {
+  "nome": "Ortignano Raggiolo",
+  "slug": "ortignano-raggiolo",
+  "provincia": "Arezzo"
+ },
+ {
+  "nome": "Palaia",
+  "slug": "palaia",
+  "provincia": "Pisa"
+ },
+ {
+  "nome": "Palazzuolo sul Senio",
+  "slug": "palazzuolo-sul-senio",
+  "provincia": "Firenze"
+ },
+ {
+  "nome": "Peccioli",
+  "slug": "peccioli",
+  "provincia": "Pisa"
+ },
+ {
+  "nome": "Pelago",
+  "slug": "pelago",
+  "provincia": "Firenze"
+ },
+ {
+  "nome": "Pescaglia",
+  "slug": "pescaglia",
+  "provincia": "Lucca"
+ },
+ {
+  "nome": "Pescia",
+  "slug": "pescia",
+  "provincia": "Pistoia"
+ },
+ {
+  "nome": "Piancastagnaio",
+  "slug": "piancastagnaio",
+  "provincia": "Siena"
+ },
+ {
+  "nome": "Piazza al Serchio",
+  "slug": "piazza-al-serchio",
+  "provincia": "Lucca"
+ },
+ {
+  "nome": "Pienza",
+  "slug": "pienza",
+  "provincia": "Siena"
+ },
+ {
+  "nome": "Pietrasanta",
+  "slug": "pietrasanta",
+  "provincia": "Lucca"
+ },
+ {
+  "nome": "Pieve Fosciana",
+  "slug": "pieve-fosciana",
+  "provincia": "Lucca"
+ },
+ {
+  "nome": "Pieve Santo Stefano",
+  "slug": "pieve-santo-stefano",
+  "provincia": "Arezzo"
+ },
+ {
+  "nome": "Pieve a Nievole",
+  "slug": "pieve-a-nievole",
+  "provincia": "Pistoia"
+ },
+ {
+  "nome": "Piombino",
+  "slug": "piombino",
+  "provincia": "Livorno"
+ },
+ {
+  "nome": "Pisa",
+  "slug": "pisa",
+  "provincia": "Pisa"
+ },
+ {
+  "nome": "Pistoia",
+  "slug": "pistoia",
+  "provincia": "Pistoia"
+ },
+ {
+  "nome": "Pitigliano",
+  "slug": "pitigliano",
+  "provincia": "Grosseto"
+ },
+ {
+  "nome": "Podenzana",
+  "slug": "podenzana",
+  "provincia": "Massa-Carrara"
+ },
+ {
+  "nome": "Poggibonsi",
+  "slug": "poggibonsi",
+  "provincia": "Siena"
+ },
+ {
+  "nome": "Poggio a Caiano",
+  "slug": "poggio-a-caiano",
+  "provincia": "Prato"
+ },
+ {
+  "nome": "Pomarance",
+  "slug": "pomarance",
+  "provincia": "Pisa"
+ },
+ {
+  "nome": "Ponsacco",
+  "slug": "ponsacco",
+  "provincia": "Pisa"
+ },
+ {
+  "nome": "Pontassieve",
+  "slug": "pontassieve",
+  "provincia": "Firenze"
+ },
+ {
+  "nome": "Ponte Buggianese",
+  "slug": "ponte-buggianese",
+  "provincia": "Pistoia"
+ },
+ {
+  "nome": "Pontedera",
+  "slug": "pontedera",
+  "provincia": "Pisa"
+ },
+ {
+  "nome": "Pontremoli",
+  "slug": "pontremoli",
+  "provincia": "Massa-Carrara"
+ },
+ {
+  "nome": "Poppi",
+  "slug": "poppi",
+  "provincia": "Arezzo"
+ },
+ {
+  "nome": "Porcari",
+  "slug": "porcari",
+  "provincia": "Lucca"
+ },
+ {
+  "nome": "Porto Azzurro",
+  "slug": "porto-azzurro",
+  "provincia": "Livorno"
+ },
+ {
+  "nome": "Portoferraio",
+  "slug": "portoferraio",
+  "provincia": "Livorno"
+ },
+ {
+  "nome": "Prato",
+  "slug": "prato",
+  "provincia": "Prato"
+ },
+ {
+  "nome": "Pratovecchio Stia",
+  "slug": "pratovecchio-stia",
+  "provincia": "Arezzo"
+ },
+ {
+  "nome": "Quarrata",
+  "slug": "quarrata",
+  "provincia": "Pistoia"
+ },
+ {
+  "nome": "Radda in Chianti",
+  "slug": "radda-in-chianti",
+  "provincia": "Siena"
+ },
+ {
+  "nome": "Radicofani",
+  "slug": "radicofani",
+  "provincia": "Siena"
+ },
+ {
+  "nome": "Radicondoli",
+  "slug": "radicondoli",
+  "provincia": "Siena"
+ },
+ {
+  "nome": "Rapolano Terme",
+  "slug": "rapolano-terme",
+  "provincia": "Siena"
+ },
+ {
+  "nome": "Reggello",
+  "slug": "reggello",
+  "provincia": "Firenze"
+ },
+ {
+  "nome": "Rignano sull'Arno",
+  "slug": "rignano-sull-arno",
+  "provincia": "Firenze"
+ },
+ {
+  "nome": "Rio",
+  "slug": "rio",
+  "provincia": "Livorno"
+ },
+ {
+  "nome": "Riparbella",
+  "slug": "riparbella",
+  "provincia": "Pisa"
+ },
+ {
+  "nome": "Roccalbegna",
+  "slug": "roccalbegna",
+  "provincia": "Grosseto"
+ },
+ {
+  "nome": "Roccastrada",
+  "slug": "roccastrada",
+  "provincia": "Grosseto"
+ },
+ {
+  "nome": "Rosignano Marittimo",
+  "slug": "rosignano-marittimo",
+  "provincia": "Livorno"
+ },
+ {
+  "nome": "Rufina",
+  "slug": "rufina",
+  "provincia": "Firenze"
+ },
+ {
+  "nome": "Sambuca Pistoiese",
+  "slug": "sambuca-pistoiese",
+  "provincia": "Pistoia"
+ },
+ {
+  "nome": "San Casciano dei Bagni",
+  "slug": "san-casciano-dei-bagni",
+  "provincia": "Siena"
+ },
+ {
+  "nome": "San Casciano in Val di Pesa",
+  "slug": "san-casciano-in-val-di-pesa",
+  "provincia": "Firenze"
+ },
+ {
+  "nome": "San Gimignano",
+  "slug": "san-gimignano",
+  "provincia": "Siena"
+ },
+ {
+  "nome": "San Giovanni Valdarno",
+  "slug": "san-giovanni-valdarno",
+  "provincia": "Arezzo"
+ },
+ {
+  "nome": "San Giuliano Terme",
+  "slug": "san-giuliano-terme",
+  "provincia": "Pisa"
+ },
+ {
+  "nome": "San Godenzo",
+  "slug": "san-godenzo",
+  "provincia": "Firenze"
+ },
+ {
+  "nome": "San Marcello Piteglio",
+  "slug": "san-marcello-piteglio",
+  "provincia": "Pistoia"
+ },
+ {
+  "nome": "San Miniato",
+  "slug": "san-miniato",
+  "provincia": "Pisa"
+ },
+ {
+  "nome": "San Quirico d'Orcia",
+  "slug": "san-quirico-d-orcia",
+  "provincia": "Siena"
+ },
+ {
+  "nome": "San Romano in Garfagnana",
+  "slug": "san-romano-in-garfagnana",
+  "provincia": "Lucca"
+ },
+ {
+  "nome": "San Vincenzo",
+  "slug": "san-vincenzo",
+  "provincia": "Livorno"
+ },
+ {
+  "nome": "Sansepolcro",
+  "slug": "sansepolcro",
+  "provincia": "Arezzo"
+ },
+ {
+  "nome": "Santa Croce sull'Arno",
+  "slug": "santa-croce-sull-arno",
+  "provincia": "Pisa"
+ },
+ {
+  "nome": "Santa Fiora",
+  "slug": "santa-fiora",
+  "provincia": "Grosseto"
+ },
+ {
+  "nome": "Santa Luce",
+  "slug": "santa-luce",
+  "provincia": "Pisa"
+ },
+ {
+  "nome": "Santa Maria a Monte",
+  "slug": "santa-maria-a-monte",
+  "provincia": "Pisa"
+ },
+ {
+  "nome": "Sarteano",
+  "slug": "sarteano",
+  "provincia": "Siena"
+ },
+ {
+  "nome": "Sassetta",
+  "slug": "sassetta",
+  "provincia": "Livorno"
+ },
+ {
+  "nome": "Scandicci",
+  "slug": "scandicci",
+  "provincia": "Firenze"
+ },
+ {
+  "nome": "Scansano",
+  "slug": "scansano",
+  "provincia": "Grosseto"
+ },
+ {
+  "nome": "Scarlino",
+  "slug": "scarlino",
+  "provincia": "Grosseto"
+ },
+ {
+  "nome": "Scarperia e San Piero",
+  "slug": "scarperia-e-san-piero",
+  "provincia": "Firenze"
+ },
+ {
+  "nome": "Seggiano",
+  "slug": "seggiano",
+  "provincia": "Grosseto"
+ },
+ {
+  "nome": "Semproniano",
+  "slug": "semproniano",
+  "provincia": "Grosseto"
+ },
+ {
+  "nome": "Seravezza",
+  "slug": "seravezza",
+  "provincia": "Lucca"
+ },
+ {
+  "nome": "Serravalle Pistoiese",
+  "slug": "serravalle-pistoiese",
+  "provincia": "Pistoia"
+ },
+ {
+  "nome": "Sestino",
+  "slug": "sestino",
+  "provincia": "Arezzo"
+ },
+ {
+  "nome": "Sesto Fiorentino",
+  "slug": "sesto-fiorentino",
+  "provincia": "Firenze"
+ },
+ {
+  "nome": "Siena",
+  "slug": "siena",
+  "provincia": "Siena"
+ },
+ {
+  "nome": "Signa",
+  "slug": "signa",
+  "provincia": "Firenze"
+ },
+ {
+  "nome": "Sillano Giuncugnano",
+  "slug": "sillano-giuncugnano",
+  "provincia": "Lucca"
+ },
+ {
+  "nome": "Sinalunga",
+  "slug": "sinalunga",
+  "provincia": "Siena"
+ },
+ {
+  "nome": "Sorano",
+  "slug": "sorano",
+  "provincia": "Grosseto"
+ },
+ {
+  "nome": "Sovicille",
+  "slug": "sovicille",
+  "provincia": "Siena"
+ },
+ {
+  "nome": "Stazzema",
+  "slug": "stazzema",
+  "provincia": "Lucca"
+ },
+ {
+  "nome": "Subbiano",
+  "slug": "subbiano",
+  "provincia": "Arezzo"
+ },
+ {
+  "nome": "Suvereto",
+  "slug": "suvereto",
+  "provincia": "Livorno"
+ },
+ {
+  "nome": "Talla",
+  "slug": "talla",
+  "provincia": "Arezzo"
+ },
+ {
+  "nome": "Terranuova Bracciolini",
+  "slug": "terranuova-bracciolini",
+  "provincia": "Arezzo"
+ },
+ {
+  "nome": "Terricciola",
+  "slug": "terricciola",
+  "provincia": "Pisa"
+ },
+ {
+  "nome": "Torrita di Siena",
+  "slug": "torrita-di-siena",
+  "provincia": "Siena"
+ },
+ {
+  "nome": "Trequanda",
+  "slug": "trequanda",
+  "provincia": "Siena"
+ },
+ {
+  "nome": "Tresana",
+  "slug": "tresana",
+  "provincia": "Massa-Carrara"
+ },
+ {
+  "nome": "Uzzano",
+  "slug": "uzzano",
+  "provincia": "Pistoia"
+ },
+ {
+  "nome": "Vagli Sotto",
+  "slug": "vagli-sotto",
+  "provincia": "Lucca"
+ },
+ {
+  "nome": "Vaglia",
+  "slug": "vaglia",
+  "provincia": "Firenze"
+ },
+ {
+  "nome": "Vaiano",
+  "slug": "vaiano",
+  "provincia": "Prato"
+ },
+ {
+  "nome": "Vecchiano",
+  "slug": "vecchiano",
+  "provincia": "Pisa"
+ },
+ {
+  "nome": "Vernio",
+  "slug": "vernio",
+  "provincia": "Prato"
+ },
+ {
+  "nome": "Viareggio",
+  "slug": "viareggio",
+  "provincia": "Lucca"
+ },
+ {
+  "nome": "Vicchio",
+  "slug": "vicchio",
+  "provincia": "Firenze"
+ },
+ {
+  "nome": "Vicopisano",
+  "slug": "vicopisano",
+  "provincia": "Pisa"
+ },
+ {
+  "nome": "Villa Basilica",
+  "slug": "villa-basilica",
+  "provincia": "Lucca"
+ },
+ {
+  "nome": "Villa Collemandina",
+  "slug": "villa-collemandina",
+  "provincia": "Lucca"
+ },
+ {
+  "nome": "Villafranca in Lunigiana",
+  "slug": "villafranca-in-lunigiana",
+  "provincia": "Massa-Carrara"
+ },
+ {
+  "nome": "Vinci",
+  "slug": "vinci",
+  "provincia": "Firenze"
+ },
+ {
+  "nome": "Volterra",
+  "slug": "volterra",
+  "provincia": "Pisa"
+ },
+ {
+  "nome": "Zeri",
+  "slug": "zeri",
+  "provincia": "Massa-Carrara"
+ }
+]

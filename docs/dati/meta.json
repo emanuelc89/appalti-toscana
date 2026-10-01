@@ -1,0 +1,57 @@
+{
+ "generato": "2026-10-01T13:24:43+00:00",
+ "fonte": "ANAC - Piattaforma di Pubblicita' a Valore Legale (pubblicitalegale.anticorruzione.it)",
+ "finestra_giorni": 14,
+ "conteggi": {
+  "4": {
+   "raccolti": 1244,
+   "uniche": 1211,
+   "toscana": {
+    "A": 43,
+    "B": 35,
+    "M": 4
+   }
+  },
+  "5b": {
+   "raccolti": 366,
+   "uniche": 352,
+   "toscana": {
+    "A": 24,
+    "B": 8
+   }
+  },
+  "5a": {
+   "raccolti": 67,
+   "uniche": 67,
+   "toscana": {
+    "A": 1,
+    "B": 1
+   }
+  },
+  "2": {
+   "raccolti": 6,
+   "uniche": 6,
+   "toscana": {}
+  },
+  "7": {
+   "raccolti": 3916,
+   "uniche": 3465,
+   "toscana": {
+    "A": 126,
+    "B": 50,
+    "D": 1,
+    "M": 1
+   }
+  },
+  "8a": {
+   "raccolti": 37055,
+   "uniche": 36986,
+   "toscana": {
+    "B": 2172
+   }
+  }
+ },
+ "archivio_nuovi_record": 2466,
+ "archivio_nuove_versioni": 0,
+ "recenti": 116
+}
