@@ -35,14 +35,25 @@ jobs:
       - name: Raccolta dati ANAC
         run: python aggiorna.py --giorni "${{ github.event.inputs.giorni || '3' }}"
 
-      - name: Commit dei dati
+      - name: Genera le pagine per comune
+        run: python genera_sito.py
+
+      - name: Commit dei dati e delle pagine
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/dati cache
+          git add docs cache
           if git diff --cached --quiet; then
             echo "Nessuna modifica ai dati."
           else
             git commit -m "dati: aggiornamento $(date -u +%Y-%m-%d)"
-            git push
+            # GitHub puo' rispondere con errori temporanei (500): fino a 5 tentativi
+            for tentativo in 1 2 3 4 5; do
+              if git pull --rebase && git push; then
+                exit 0
+              fi
+              echo "Invio non riuscito (tentativo $tentativo di 5): riprovo tra $((tentativo * 30)) secondi"
+              sleep $((tentativo * 30))
+            done
+            exit 1
           fi
