@@ -36,6 +36,19 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # GitHub puo' rispondere con errori temporanei (500): fino a 5 tentativi, con attese crescenti
+          invia() {
+            for tentativo in 1 2 3 4 5; do
+              if git pull --rebase && git push; then
+                return 0
+              fi
+              echo "Invio non riuscito (tentativo $tentativo di 5): riprovo tra $((tentativo * 30)) secondi"
+              sleep $((tentativo * 30))
+            done
+            return 1
+          }
+
           OGGI_MESE=$(date -u +%Y-%m-01)
           for i in $(seq "${{ github.event.inputs.primo }}" "${{ github.event.inputs.mesi }}"); do
             DAL=$(date -u -d "$OGGI_MESE -$i month" +%Y-%m-%d)
@@ -47,8 +60,7 @@ jobs:
               echo "Nessuna modifica per $DAL - $AL"
             else
               git commit -m "dati: storico $DAL - $AL"
-              git pull --rebase
-              git push
+              invia
             fi
             echo "::endgroup::"
           done
