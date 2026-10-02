@@ -1,0 +1,52 @@
+/* Stile condiviso delle pagine per comune: stessi toni del sito principale */
+:root { --carta:#FBFBF9; --inchiostro:#1D232B; --timbro:#3D44A8; --urgente:#B42318; --filo:#D9DCE1; --tenue:#5F6670; --fondo:#EEF0F4;
+  --testo:"Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif; --display:"Barlow Condensed", "Arial Narrow", system-ui, sans-serif; }
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin:0; background:var(--carta); color:var(--inchiostro); font:400 1.0625rem/1.55 var(--testo); }
+.contenitore { max-width:68rem; margin:0 auto; padding:0 1.25rem; }
+.vh { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+.briciole { background:var(--fondo); font-size:.9375rem; padding:.55rem 0; }
+.briciole ol { list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:.25rem .6rem; }
+.briciole li + li::before { content:"›"; color:var(--tenue); margin-right:.6rem; }
+.briciole a { color:var(--timbro); }
+.testata { background:#fff; border-bottom:3px solid var(--inchiostro); padding:2rem 0 1.25rem; }
+h1 { font:600 clamp(2.2rem,6vw,3.4rem)/1.02 var(--display); letter-spacing:-.01em; margin:0 0 .6rem; }
+.sottotitolo { margin:0; max-width:42em; font-size:1.125rem; }
+.aggiornato { margin:.75rem 0 0; color:var(--tenue); font-size:.9375rem; }
+h2 { font:600 1.6rem/1.15 var(--display); margin:2.25rem 0 .4rem; }
+.aiuto, .nota { margin:.25rem 0 .75rem; color:var(--tenue); font-size:.9375rem; max-width:62ch; }
+.numeri { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--filo); border:1px solid var(--filo); margin:1.75rem 0 .5rem; }
+.numeri div { background:#fff; padding:1rem 1.1rem; }
+.numeri dt { color:var(--tenue); font-size:.9375rem; }
+.numeri dd { margin:.15rem 0 0; font:600 clamp(1.7rem,4vw,2.4rem)/1.05 var(--display); }
+.elenco { list-style:none; margin:0; padding:0; border-top:1px solid var(--filo); }
+.avviso { display:grid; grid-template-columns:6.5rem 1fr auto; gap:1.25rem; padding:1.1rem 0; border-bottom:1px solid var(--filo); }
+.quando { font:600 1.15rem/1.15 var(--display); }
+.quando .et { display:block; font:500 .9rem/1.2 var(--display); color:var(--tenue); text-transform:uppercase; letter-spacing:.04em; }
+.oggetto { font:700 1.0625rem/1.4 var(--testo); margin:0 0 .3rem; max-width:62ch; overflow-wrap:anywhere; }
+.ente { margin:0 0 .35rem; }
+.dettagli { display:flex; flex-wrap:wrap; gap:.2rem 1.25rem; list-style:none; margin:0; padding:0; color:var(--tenue); font-size:.9375rem; }
+.dettagli .valore { color:var(--inchiostro); font-weight:700; }
+.collegamenti { display:flex; flex-direction:column; align-items:flex-start; gap:.5rem; min-width:11rem; }
+.collegamenti a { color:var(--timbro); font-weight:700; text-underline-offset:.2em; }
+.collegamenti a.principale { background:var(--timbro); color:#fff; padding:.55rem .9rem; border-radius:3px; text-decoration:none; }
+.collegamenti a.principale:hover { background:var(--inchiostro); }
+.classifica { list-style:none; margin:0; padding:0; border-top:1px solid var(--filo); counter-reset:pos; }
+.classifica li { display:flex; justify-content:space-between; gap:1rem; padding:.7rem 0; border-bottom:1px solid var(--filo); counter-increment:pos; }
+.classifica li::before { content:counter(pos); font:600 1.2rem/1.3 var(--display); color:var(--tenue); width:1.6rem; flex:none; }
+.classifica .nome { flex:1; font-weight:700; overflow-wrap:anywhere; }
+.classifica .cifre, .indice-comuni .cifre { color:var(--tenue); font-size:.9375rem; white-space:nowrap; }
+.indice-comuni { list-style:none; margin:0; padding:0; columns:3 16rem; column-gap:2rem; }
+.indice-comuni li { break-inside:avoid; padding:.3rem 0; display:flex; justify-content:space-between; gap:.75rem; border-bottom:1px solid var(--filo); }
+.indice-comuni a { color:var(--timbro); font-weight:700; text-underline-offset:.2em; }
+.vuoto { padding:2rem 0; color:var(--tenue); }
+footer { margin-top:3rem; background:#fff; border-top:3px solid var(--inchiostro); padding:1.5rem 0 3rem; font-size:.9375rem; }
+footer p { max-width:62ch; margin:.5rem 0; }
+footer a { color:var(--timbro); }
+a:focus-visible { outline:3px solid var(--timbro); outline-offset:2px; }
+@media (max-width:720px) {
+  .numeri { grid-template-columns:1fr 1fr; }
+  .avviso { grid-template-columns:4.8rem 1fr; gap:1rem; }
+  .collegamenti { grid-column:2; flex-direction:row; flex-wrap:wrap; min-width:0; }
+}
