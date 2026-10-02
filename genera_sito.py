@@ -27,7 +27,7 @@ DOCS = AQUI / "docs"
 SITO = "https://emanuelc89.github.io/appalti-toscana"
 # Token di Cloudflare Web Analytics (pannello Cloudflare > Web Analytics > Manage site > JS snippet).
 # Lascia vuoto per non inserire il contatore.
-CF_BEACON_TOKEN = ""
+CF_BEACON_TOKEN = "e7b35b91883449e0b1b69fbca05fce21"
 REPO = "https://github.com/emanuelc89/appalti-toscana"
 
 MESI = ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno",
