@@ -29,6 +29,7 @@
   .testata { background: #fff; border-bottom: 3px solid var(--inchiostro); padding: 2.5rem 0 1.5rem; }
   h1 { font: 600 clamp(2.4rem, 6vw, 3.6rem)/1 var(--display); letter-spacing: -0.01em; margin: 0 0 0.6rem; }
   .sottotitolo { margin: 0; max-width: 38em; font-size: 1.125rem; }
+  .sottotitolo a { color: var(--timbro); font-weight: 700; text-underline-offset: 0.2em; }
   .aggiornato { margin: 0.75rem 0 0; color: var(--tenue); font-size: 0.9375rem; }
 
   h2 { font: 600 1.6rem/1.15 var(--display); margin: 2rem 0 0.25rem; }
@@ -95,6 +96,7 @@
   <div class="contenitore">
     <h1>Appalti Toscana</h1>
     <p class="sottotitolo">Gare, indagini di mercato e avvisi aperti in Toscana, raccolti ogni giorno dalla pubblicità legale di ANAC.</p>
+    <p class="sottotitolo"><a href="comuni/">Cerca il tuo comune</a>: affidamenti diretti, esiti e gare aperte, comune per comune.</p>
     <p class="aggiornato" id="aggiornato">Caricamento dei dati…</p>
   </div>
 </header>
@@ -170,6 +172,7 @@
 
   const norm = (s) => String(s ?? "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
   const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const conArticolo = (iso) => { const g = Number(iso.slice(8, 10)); return (g === 8 || g === 11 ? "l'" : "il ") + fmtData.format(new Date(isoUTC(iso))); };
   const urlSicuro = (u) => (/^https?:\/\//i.test(u || "") ? u : null);
   const oggi = () => { const d = new Date(); return Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()); };
   const isoUTC = (iso) => { const [y, m, g] = iso.split("-").map(Number); return Date.UTC(y, m - 1, g); };
@@ -244,8 +247,8 @@
       `<li>${esc(TIPI[a.tipo] || a.tipo)}</li>`,
       `<li>${esc(luogo(a))}</li>`,
       a.valore != null ? `<li class="valore">${euro.format(a.valore)}</li>` : "",
-      a.scadenza && !a.anomalia_scadenza ? `<li>Scade il ${fmtData.format(new Date(isoUTC(a.scadenza)))}</li>` : "",
-      a.pubblicato ? `<li>Pubblicato il ${fmtData.format(new Date(isoUTC(a.pubblicato)))}</li>` : "",
+      a.scadenza && !a.anomalia_scadenza ? `<li>Scade ${conArticolo(a.scadenza)}</li>` : "",
+      a.pubblicato ? `<li>Pubblicato ${conArticolo(a.pubblicato)}</li>` : "",
     ].join("");
     const cpv = (a.cpv || [])[0];
     const testoCpv = cpv ? `${esc(cpv.descrizione || "")}${cpv.codice ? ` (CPV ${esc(cpv.codice)})` : ""}` : "";
@@ -322,5 +325,7 @@
   avvia();
 })();
 </script>
+<!-- Contatore visite Cloudflare Web Analytics: sostituisci INSERISCI_IL_TOKEN con il tuo token -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "INSERISCI_IL_TOKEN"}'></script>
 </body>
 </html>
