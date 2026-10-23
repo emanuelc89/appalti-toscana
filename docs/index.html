@@ -2,122 +2,141 @@
 <html lang="it">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="google-site-verification" content="nJXw_KjFfhqM9B133fIwIgnTT-sKqeUIs4xEr7M0DrE">
 <title>Appalti Toscana: gare e avvisi aperti</title>
 <meta name="description" content="Gare d'appalto, indagini di mercato e avvisi aperti in Toscana, aggiornati ogni giorno dalla pubblicità legale ANAC. Filtra per provincia, comune, tipo e importo.">
+<meta name="theme-color" content="#F4F5F8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#11141B" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233D44A8'/%3E%3Cpath d='M9 10h14M9 16h14M9 22h9' stroke='white' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E">
+<script>try{var t=localStorage.getItem("tema");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Barlow+Condensed:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="stile.css">
+<script src="tema.js" defer></script>
 <style>
-  :root {
-    --carta: #FBFBF9;
-    --inchiostro: #1D232B;
-    --timbro: #3D44A8;
-    --urgente: #B42318;
-    --filo: #D9DCE1;
-    --tenue: #5F6670;
-    --fondo-striscia: #EEF0F4;
-    --testo: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
-    --display: "Barlow Condensed", "Arial Narrow", system-ui, sans-serif;
+  /* Solo la home: lo stile comune e' in stile.css (generato da genera_sito.py). */
+  .apertura { display:grid; grid-template-columns:minmax(0,1.5fr) minmax(0,1fr); gap:1.5rem; align-items:end; }
+  .vai-comune { background:var(--superficie); border:1px solid var(--filo); border-radius:18px; padding:1.1rem 1.2rem; box-shadow:var(--ombra); }
+  .vai-comune h2 { font-size:1.35rem; margin-bottom:.2rem; }
+  .vai-comune p { margin:0 0 .7rem; color:var(--tenue); font-size:.92rem; }
+  .vai-comune form { display:flex; gap:.5rem; }
+  .vai-comune .campo { flex:1; min-width:0; }
+
+  .scheletro { background:linear-gradient(90deg, var(--superficie-2) 0%, var(--filo) 50%, var(--superficie-2) 100%); background-size:200% 100%; animation:luccica 1.4s ease-in-out infinite; border-radius:8px; color:transparent !important; }
+  @keyframes luccica { 0% { background-position:100% 0; } 100% { background-position:-100% 0; } }
+
+  .sezione-scadenze { margin-top:2.25rem; }
+  .scheda { background:var(--superficie); border:1px solid var(--filo); border-radius:18px; padding:1.1rem 1.2rem; box-shadow:var(--ombra); }
+  .striscia { display:grid; grid-template-columns:repeat(30, minmax(1.9rem, 1fr)); gap:4px; overflow-x:auto; padding:2px 2px .5rem; scrollbar-width:thin; }
+  .giorno { appearance:none; border:1px solid transparent; border-radius:8px; padding:0; margin:0; font:inherit; color:var(--inchiostro);
+            background:var(--superficie-2); height:7.5rem; display:flex; flex-direction:column; justify-content:flex-end; cursor:pointer; overflow:hidden; transition:border-color .15s ease; }
+  .giorno:disabled { cursor:default; opacity:.6; }
+  .giorno .n { font:700 .9rem/1 var(--display); text-align:center; padding:.3rem 0 .2rem; }
+  .giorno .barra-g { display:block; background:var(--timbro); opacity:.75; width:100%; border-radius:4px 4px 0 0; }
+  .giorno .etichetta { font:600 .82rem/1.15 var(--display); text-align:center; padding:.3rem 0; }
+  .giorno .etichetta small { display:block; font-size:.75rem; color:var(--tenue); }
+  .giorno.festivo .etichetta { color:var(--tenue); }
+  .giorno.urgente .barra-g { background:var(--urgente); }
+  .giorno[aria-pressed="true"] { border-color:var(--inchiostro); background:var(--superficie); }
+  .giorno[aria-pressed="true"] .barra-g { opacity:1; }
+  .giorno:not(:disabled):hover { border-color:var(--timbro); }
+
+  .filtri { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:.9rem; margin:1.5rem 0 0; align-items:end; }
+  .filtri label { display:flex; flex-direction:column; gap:.35rem; font-weight:700; font-size:.9rem; }
+  .filtri .riga-sotto { grid-column:1 / -1; display:flex; flex-wrap:wrap; gap:.75rem 1.25rem; align-items:center; justify-content:space-between; }
+  .spunta { display:inline-flex !important; flex-direction:row !important; align-items:center; gap:.55rem !important; font-weight:400 !important; font-size:1rem !important; min-height:44px; cursor:pointer; }
+  .spunta input { width:1.25rem; height:1.25rem; accent-color:var(--timbro); }
+  select.campo { appearance:auto; }
+
+  .conteggio { display:flex; flex-wrap:wrap; gap:.6rem 1rem; align-items:center; justify-content:space-between; margin:1.75rem 0 .9rem; }
+  .conteggio strong { font:700 1.5rem/1 var(--display); }
+  .conteggio .attivi { display:flex; flex-wrap:wrap; gap:.4rem; align-items:center; }
+  .chip-filtro { display:inline-flex; align-items:center; gap:.4rem; font:700 .85rem/1 var(--testo); color:var(--timbro); background:var(--timbro-tenue); border:0; border-radius:999px; padding:.5rem .75rem; min-height:36px; cursor:pointer; }
+  .ordina { display:flex; align-items:center; gap:.5rem; font-size:.9rem; color:var(--tenue); }
+  .ordina .campo { width:auto; min-height:44px; padding:.5rem .75rem; }
+
+  .tempo { background:var(--superficie-2); border:1px solid var(--filo); border-radius:12px; padding:.55rem .4rem; text-align:center; font-family:var(--display); line-height:1; }
+  .tempo .num { display:block; font-weight:700; font-size:2.2rem; }
+  .tempo .parola { display:block; font-weight:700; font-size:1.5rem; }
+  .tempo .unita { display:block; font:600 .8rem/1.2 var(--testo); color:var(--tenue); margin-top:.2rem; }
+  .tempo.urgente { background:var(--urgente-tenue); border-color:transparent; }
+  .tempo.urgente, .tempo.urgente .unita { color:var(--urgente); }
+  .cpv { margin:.5rem 0 0; color:var(--tenue); font-size:.9rem; max-width:64ch; }
+  .altri { display:flex; justify-content:center; margin-top:1.25rem; }
+  .elenco .vuoto { margin:0; list-style:none; }
+
+  @media (max-width:860px) {
+    .apertura { grid-template-columns:1fr; }
+    .filtri { grid-template-columns:1fr 1fr; }
+    .filtri label:first-child { grid-column:1 / -1; }
   }
-  * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
-  body { margin: 0; background: var(--carta); color: var(--inchiostro); font: 400 1.0625rem/1.55 var(--testo); }
-  .contenitore { max-width: 68rem; margin: 0 auto; padding: 0 1.25rem; }
-  .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-
-  .testata { background: #fff; border-bottom: 3px solid var(--inchiostro); padding: 2.5rem 0 1.5rem; }
-  h1 { font: 600 clamp(2.4rem, 6vw, 3.6rem)/1 var(--display); letter-spacing: -0.01em; margin: 0 0 0.6rem; }
-  .sottotitolo { margin: 0; max-width: 38em; font-size: 1.125rem; }
-  .sottotitolo a { color: var(--timbro); font-weight: 700; text-underline-offset: 0.2em; }
-  .aggiornato { margin: 0.75rem 0 0; color: var(--tenue); font-size: 0.9375rem; }
-
-  h2 { font: 600 1.6rem/1.15 var(--display); margin: 2rem 0 0.25rem; }
-  .aiuto { margin: 0 0 0.75rem; color: var(--tenue); font-size: 0.9375rem; }
-
-  .striscia { display: grid; grid-template-columns: repeat(30, minmax(1.6rem, 1fr)); gap: 3px; overflow-x: auto; padding: 2px 2px 0.4rem; }
-  .giorno { appearance: none; border: 0; border-radius: 2px; padding: 0; margin: 0; font: inherit; color: var(--inchiostro);
-            background: var(--fondo-striscia); height: 7.5rem; display: flex; flex-direction: column; justify-content: flex-end; cursor: pointer; }
-  .giorno:disabled { cursor: default; }
-  .giorno .n { font: 600 0.875rem/1 var(--display); text-align: center; padding: 0.3rem 0 0.2rem; }
-  .giorno .barra { display: block; background: var(--timbro); width: 100%; }
-  .giorno .etichetta { font: 500 0.8125rem/1.2 var(--display); text-align: center; padding: 0.3rem 0; }
-  .giorno.festivo .etichetta { color: var(--tenue); }
-  .giorno[aria-pressed="true"] { background: #fff; box-shadow: inset 0 0 0 2px var(--inchiostro); }
-  .giorno[aria-pressed="true"] .barra { background: var(--inchiostro); }
-  .giorno:not(:disabled):hover .barra { background: var(--inchiostro); }
-
-  .filtri { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 1rem; margin: 2rem 0 0.5rem; align-items: end; }
-  .filtri label { display: flex; flex-direction: column; gap: 0.3rem; font-weight: 700; font-size: 0.9375rem; }
-  .filtri .spunta { grid-column: 1 / -1; flex-direction: row; align-items: center; gap: 0.5rem; font-weight: 400; }
-  .filtri .spunta input { width: 1.15rem; height: 1.15rem; accent-color: var(--timbro); }
-  input[type="search"], select { font: inherit; font-weight: 400; color: var(--inchiostro); background: #fff;
-                                 border: 1.5px solid var(--inchiostro); border-radius: 3px; padding: 0.55rem 0.7rem; min-height: 2.75rem; width: 100%; }
-
-  .conteggio { display: flex; flex-wrap: wrap; gap: 1rem; align-items: baseline; font-weight: 700; margin: 1.25rem 0 0.5rem; }
-  .conteggio button { font: inherit; font-weight: 400; color: var(--timbro); background: none; border: 0; padding: 0; text-decoration: underline; cursor: pointer; }
-
-  .elenco { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--filo); }
-  .avviso { display: grid; grid-template-columns: 6.5rem 1fr auto; gap: 1.25rem; padding: 1.25rem 0; border-bottom: 1px solid var(--filo); }
-  .tempo { font-family: var(--display); line-height: 1; }
-  .tempo .num { display: block; font-weight: 600; font-size: 2.4rem; }
-  .tempo .parola { display: block; font-weight: 600; font-size: 1.6rem; }
-  .tempo .unita { display: block; font-weight: 500; font-size: 1rem; color: var(--tenue); margin-top: 0.15rem; }
-  .tempo.urgente, .tempo.urgente .unita { color: var(--urgente); }
-  .oggetto { font: 700 1.0625rem/1.4 var(--testo); margin: 0 0 0.35rem; max-width: 62ch; overflow-wrap: anywhere; }
-  .ente { margin: 0 0 0.4rem; }
-  .dettagli { display: flex; flex-wrap: wrap; gap: 0.2rem 1.25rem; list-style: none; margin: 0; padding: 0; color: var(--tenue); font-size: 0.9375rem; }
-  .dettagli .valore { color: var(--inchiostro); font-weight: 700; }
-  .cpv { margin: 0.4rem 0 0; color: var(--tenue); font-size: 0.9375rem; max-width: 62ch; }
-  .collegamenti { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; min-width: 11rem; }
-  .collegamenti a { color: var(--timbro); font-weight: 700; text-underline-offset: 0.2em; }
-  .collegamenti a.principale { background: var(--timbro); color: #fff; padding: 0.55rem 0.9rem; border-radius: 3px; text-decoration: none; }
-  .collegamenti a.principale:hover { background: var(--inchiostro); }
-  .vuoto { padding: 2rem 0; color: var(--tenue); }
-
-  footer { margin-top: 3rem; background: #fff; border-top: 3px solid var(--inchiostro); padding: 1.5rem 0 3rem; font-size: 0.9375rem; }
-  footer p { max-width: 62ch; margin: 0.5rem 0; }
-  footer a { color: var(--timbro); }
-
-  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid var(--timbro); outline-offset: 2px; }
-
-  @media (max-width: 720px) {
-    .filtri { grid-template-columns: 1fr 1fr; }
-    .filtri label:first-child { grid-column: 1 / -1; }
-    .avviso { grid-template-columns: 4.5rem 1fr; gap: 1rem; }
-    .tempo .num { font-size: 2rem; }
-    .tempo .parola { font-size: 1.3rem; }
-    .collegamenti { grid-column: 2; flex-direction: row; flex-wrap: wrap; min-width: 0; }
+  @media (max-width:760px) {
+    .tempo .num { font-size:1.8rem; }
+    .tempo .parola { font-size:1.2rem; }
+    .giorno { height:6.5rem; }
+    .striscia { grid-template-columns:repeat(30, minmax(2.75rem, 1fr)); }
+  }
+  @media (max-width:420px) {
+    .filtri { grid-template-columns:1fr; }
+    .vai-comune form { flex-direction:column; }
   }
 </style>
 </head>
 <body>
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+
+<header class="barra"><div class="contenitore">
+  <a class="marchio" href="./"><span class="marchio-icona" aria-hidden="true"></span>Appalti Toscana</a>
+  <nav class="navigazione" aria-label="Sezioni del sito"><a href="./" aria-current="page">Gare aperte</a><a href="comuni/">Comuni</a></nav>
+  <button class="btn btn-icona" id="bottone-tema" type="button" aria-label="Cambia tema"></button>
+</div></header>
+
 <header class="testata">
-  <div class="contenitore">
-    <h1>Appalti Toscana</h1>
-    <p class="sottotitolo">Gare, indagini di mercato e avvisi aperti in Toscana, raccolti ogni giorno dalla pubblicità legale di ANAC.</p>
-    <p class="sottotitolo"><a href="comuni/">Cerca il tuo comune</a>: affidamenti diretti, esiti e gare aperte, comune per comune.</p>
-    <p class="aggiornato" id="aggiornato">Caricamento dei dati…</p>
+  <div class="contenitore apertura">
+    <div>
+      <p class="occhiello">Pubblicità legale ANAC · aggiornato ogni giorno</p>
+      <h1>Gare e avvisi aperti in Toscana</h1>
+      <p class="sottotitolo">Bandi, indagini di mercato e avvisi di pre-informazione, con il tempo che resta per partecipare. Filtra per provincia, tipo e importo.</p>
+      <p class="aggiornato" id="aggiornato">Caricamento dei dati…</p>
+    </div>
+    <div class="vai-comune">
+      <h2>Il tuo comune</h2>
+      <p>Chi vince gli appalti, quanto viene affidato e le gare aperte, comune per comune.</p>
+      <form id="form-comune">
+        <label for="vai-comune" class="vh">Nome del comune</label>
+        <input class="campo campo-ricerca" id="vai-comune" list="elenco-comuni" placeholder="Es. Firenze, Prato…" autocomplete="off">
+        <datalist id="elenco-comuni"></datalist>
+        <button class="btn btn-primario" type="submit">Vai</button>
+      </form>
+    </div>
   </div>
 </header>
 
-<main class="contenitore">
-  <section aria-labelledby="titolo-scadenze">
+<main class="contenitore" id="contenuto" tabindex="-1">
+  <dl class="numeri" aria-label="Riepilogo">
+    <div class="evidenza"><dt>Avvisi aperti</dt><dd id="n-aperti" class="scheletro">000</dd></div>
+    <div><dt>Scadono entro 7 giorni</dt><dd id="n-settimana" class="scheletro">00</dd></div>
+    <div><dt>Valore degli avvisi aperti</dt><dd id="n-valore" class="scheletro">0 mln €</dd></div>
+    <div><dt>Pubblicati nell'ultimo giorno</dt><dd id="n-nuovi" class="scheletro">00</dd></div>
+  </dl>
+
+  <section class="sezione-scadenze" aria-labelledby="titolo-scadenze">
     <h2 id="titolo-scadenze">Scadenze nei prossimi 30 giorni</h2>
-    <p class="aiuto">Tocca un giorno per vedere solo gli avvisi che scadono quel giorno.</p>
-    <div class="striscia" id="striscia" role="group" aria-label="Avvisi in scadenza per giorno"></div>
+    <p class="aiuto">Tocca un giorno per vedere solo gli avvisi che scadono quel giorno. In rosso le scadenze dei prossimi 3 giorni.</p>
+    <div class="scheda"><div class="striscia" id="striscia" role="group" aria-label="Avvisi in scadenza per giorno"></div></div>
   </section>
 
-  <section class="filtri" aria-label="Filtri">
+  <section class="filtri scheda" aria-label="Filtri">
     <label>Cerca
-      <input type="search" id="f-testo" placeholder="Comune, ente, oggetto o CIG" autocomplete="off">
+      <input type="search" class="campo campo-ricerca" id="f-testo" placeholder="Comune, ente, oggetto o CIG" autocomplete="off">
     </label>
     <label>Provincia
-      <select id="f-provincia"><option value="">Tutte</option></select>
+      <select class="campo" id="f-provincia"><option value="">Tutte</option></select>
     </label>
     <label>Tipo
-      <select id="f-tipo">
+      <select class="campo" id="f-tipo">
         <option value="">Tutti</option>
         <option value="bando">Bandi di gara</option>
         <option value="indagine_sotto_soglia">Indagini di mercato sotto soglia</option>
@@ -126,23 +145,37 @@
       </select>
     </label>
     <label>Importo
-      <select id="f-importo">
+      <select class="campo" id="f-importo">
         <option value="">Qualsiasi</option>
         <option value="fino-140">Fino a 140.000 €</option>
         <option value="140-1m">Da 140.000 € a 1 milione</option>
         <option value="oltre-1m">Oltre 1 milione</option>
       </select>
     </label>
-    <label class="spunta">
-      <input type="checkbox" id="f-aperti" checked> Solo avvisi con la scadenza ancora aperta
-    </label>
+    <div class="riga-sotto">
+      <label class="spunta"><input type="checkbox" id="f-aperti" checked> Solo avvisi con la scadenza ancora aperta</label>
+      <button class="btn" type="button" id="azzera" hidden>Azzera filtri</button>
+    </div>
   </section>
 
-  <p class="conteggio" id="conteggio" aria-live="polite"></p>
-  <ul class="elenco" id="elenco"></ul>
+  <div class="conteggio">
+    <div class="attivi" id="conteggio" aria-live="polite"></div>
+    <label class="ordina">Ordina
+      <select class="campo" id="f-ordine">
+        <option value="scadenza">Scadenza più vicina</option>
+        <option value="recenti">Pubblicati di recente</option>
+        <option value="importo">Importo più alto</option>
+      </select>
+    </label>
+  </div>
+  <ul class="elenco" id="elenco">
+    <li class="avviso"><div class="scheletro" style="height:5rem"></div><div class="scheletro" style="height:5rem"></div></li>
+    <li class="avviso"><div class="scheletro" style="height:5rem"></div><div class="scheletro" style="height:5rem"></div></li>
+  </ul>
+  <div class="altri"><button class="btn" type="button" id="mostra-altri" hidden></button></div>
 </main>
 
-<footer>
+<footer class="piede">
   <div class="contenitore">
     <p>Fonte: ANAC, <a href="https://pubblicitalegale.anticorruzione.it" rel="noopener">Piattaforma di Pubblicità a Valore Legale</a>. Fa fede solo la pubblicazione ufficiale: prima di partecipare controlla sempre l'avviso e i documenti di gara.</p>
     <p>Il comune è ricostruito dal luogo di esecuzione indicato nell'avviso. Progetto indipendente, non affiliato ad ANAC né alle stazioni appaltanti.</p>
@@ -159,25 +192,35 @@
     preinformazione: "Avviso di pre-informazione",
   };
   const FASCE = { "fino-140": [0, 140000], "140-1m": [140000, 1000000], "oltre-1m": [1000000, Infinity] };
+  const NOMI_FASCE = { "fino-140": "fino a 140.000 €", "140-1m": "140.000 € – 1 mln", "oltre-1m": "oltre 1 mln" };
   const GIORNO_MS = 86400000;
+  const PASSO = 25;
+  const FUSO = "Europe/Rome";
 
   const $ = (s) => document.querySelector(s);
   const euro = new Intl.NumberFormat("it-IT", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
   const fmtGiorno = new Intl.DateTimeFormat("it-IT", { weekday: "long", day: "numeric", month: "long", timeZone: "UTC" });
+  const fmtSett = new Intl.DateTimeFormat("it-IT", { weekday: "short", timeZone: "UTC" });
   const fmtData = new Intl.DateTimeFormat("it-IT", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
-  const fmtAgg = new Intl.DateTimeFormat("it-IT", { day: "numeric", month: "long", hour: "2-digit", minute: "2-digit" });
+  const fmtAgg = new Intl.DateTimeFormat("it-IT", { day: "numeric", month: "long", hour: "2-digit", minute: "2-digit", timeZone: FUSO });
 
   let avvisi = [];
   const comuni = {};
   let giornoScelto = null;
+  let mostrati = PASSO;
 
-  const norm = (s) => String(s ?? "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+  const norm = (s) => String(s ?? "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
   const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const isoUTC = (iso) => { const [y, m, g] = iso.split("-").map(Number); return Date.UTC(y, m - 1, g); };
   const conArticolo = (iso) => { const g = Number(iso.slice(8, 10)); return (g === 8 || g === 11 ? "l'" : "il ") + fmtData.format(new Date(isoUTC(iso))); };
   const urlSicuro = (u) => (/^https?:\/\//i.test(u || "") ? u : null);
-  const oggi = () => { const d = new Date(); return Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()); };
-  const isoUTC = (iso) => { const [y, m, g] = iso.split("-").map(Number); return Date.UTC(y, m - 1, g); };
+  // "Oggi" secondo il calendario italiano, non quello del fuso del dispositivo.
+  const oggiIso = () => new Date().toLocaleDateString("sv-SE", { timeZone: FUSO });
+  const oggi = () => isoUTC(oggiIso());
   const giorniA = (iso) => (iso ? Math.round((isoUTC(iso) - oggi()) / GIORNO_MS) : null);
+  // Importo compatto con l'unita' in piccolo, per le schede numeriche.
+  const milioni = (v) => v >= 1e9 ? `${(v / 1e9).toLocaleString("it-IT", { maximumFractionDigits: 1 })}<small>&nbsp;mld&nbsp;€</small>`
+    : v >= 1e6 ? `${(v / 1e6).toLocaleString("it-IT", { maximumFractionDigits: 1 })}<small>&nbsp;mln&nbsp;€</small>` : esc(euro.format(v));
 
   function luogo(a) {
     if (a.geo === "M") return "Più regioni, anche in Toscana";
@@ -192,6 +235,23 @@
     a._giorni = a.anomalia_scadenza ? null : giorniA(a.scadenza);
     a._testo = norm([a.titolo, a.committente, luogo(a), (a.cpv || []).map((c) => c.descrizione).join(" "),
                      (a.cig || []).join(" ")].join(" "));
+  }
+
+  // ---------- Stato dei filtri, anche nell'indirizzo (link condivisibile) ----------
+  const CAMPI = { q: "#f-testo", prov: "#f-provincia", tipo: "#f-tipo", imp: "#f-importo", ord: "#f-ordine" };
+  function leggiUrl() {
+    const p = new URLSearchParams(location.search);
+    Object.entries(CAMPI).forEach(([k, s]) => { if (p.has(k)) $(s).value = p.get(k); });
+    if (p.get("tutti") === "1") $("#f-aperti").checked = false;
+    if (p.has("giorno")) giornoScelto = Number(p.get("giorno"));
+  }
+  function scriviUrl() {
+    const p = new URLSearchParams();
+    Object.entries(CAMPI).forEach(([k, s]) => { const v = $(s).value.trim(); if (v && !(k === "ord" && v === "scadenza")) p.set(k, v); });
+    if (!$("#f-aperti").checked) p.set("tutti", "1");
+    if (giornoScelto !== null) p.set("giorno", giornoScelto);
+    const q = p.toString();
+    try { history.replaceState(null, "", q ? `?${q}` : location.pathname); } catch (e) {}
   }
 
   function filtra() {
@@ -213,21 +273,19 @@
   function disegnaStriscia(base) {
     const conti = new Array(30).fill(0);
     base.forEach((a) => { if (a._giorni !== null && a._giorni >= 0 && a._giorni < 30) conti[a._giorni] += 1; });
-    if (giornoScelto !== null && conti[giornoScelto] === 0) giornoScelto = null;
+    if (giornoScelto !== null && !conti[giornoScelto]) giornoScelto = null;
     const max = Math.max(1, ...conti);
     const t0 = oggi();
     $("#striscia").innerHTML = conti.map((n, i) => {
       const d = new Date(t0 + i * GIORNO_MS);
       const festivo = d.getUTCDay() === 0 || d.getUTCDay() === 6;
       const quando = fmtGiorno.format(d);
-      const etichetta = n === 0 ? `Nessuna scadenza ${quando}`
-                                : `${n} ${n === 1 ? "avviso scade" : "avvisi scadono"} ${quando}`;
-      return `<button type="button" class="giorno${festivo ? " festivo" : ""}" data-g="${i}"
-                aria-pressed="${giornoScelto === i}" ${n === 0 ? "disabled" : ""}
-                aria-label="${esc(etichetta)}" title="${esc(etichetta)}">
+      const etichetta = n === 0 ? `Nessuna scadenza ${quando}` : `${n} ${n === 1 ? "avviso scade" : "avvisi scadono"} ${quando}`;
+      return `<button type="button" class="giorno${festivo ? " festivo" : ""}${i <= 3 ? " urgente" : ""}" data-g="${i}"
+                aria-pressed="${giornoScelto === i}" ${n === 0 ? "disabled" : ""} aria-label="${esc(etichetta)}" title="${esc(etichetta)}">
                 <span class="n">${n || ""}</span>
-                <span class="barra" style="height:${Math.round((n / max) * 72)}px"></span>
-                <span class="etichetta">${d.getUTCDate()}</span>
+                <span class="barra-g" style="height:${Math.round((n / max) * 64)}px"></span>
+                <span class="etichetta"><small>${i === 0 ? "oggi" : esc(fmtSett.format(d).replace(".", ""))}</small>${d.getUTCDate()}</span>
               </button>`;
     }).join("");
   }
@@ -238,18 +296,21 @@
     if (g === null) return `<div class="tempo"><span class="unita">Senza scadenza</span></div>`;
     if (g < 0) return `<div class="tempo"><span class="unita">Scaduto</span></div>`;
     const cls = g <= 3 ? "tempo urgente" : "tempo";
-    if (g === 0) return `<div class="${cls}"><span class="parola">Oggi</span></div>`;
+    if (g === 0) return `<div class="${cls}"><span class="parola">Oggi</span><span class="unita">ultimo giorno</span></div>`;
     if (g === 1) return `<div class="${cls}"><span class="parola">Domani</span></div>`;
     return `<div class="${cls}"><span class="num">${g}</span><span class="unita">giorni</span></div>`;
   }
 
+  const ICONA_ESTERNO = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>';
+
   function riga(a) {
+    const cig = (a.cig || []).filter(Boolean);
     const dettagli = [
-      `<li>${esc(TIPI[a.tipo] || a.tipo)}</li>`,
       `<li>${esc(luogo(a))}</li>`,
       a.valore != null ? `<li class="valore">${euro.format(a.valore)}</li>` : "",
       a.scadenza && !a.anomalia_scadenza ? `<li>Scade ${conArticolo(a.scadenza)}</li>` : "",
       a.pubblicato ? `<li>Pubblicato ${conArticolo(a.pubblicato)}</li>` : "",
+      cig.length ? `<li class="cig">CIG ${esc(cig[0])}${cig.length > 1 ? ` +${cig.length - 1}` : ""}</li>` : "",
     ].join("");
     const cpv = (a.cpv || [])[0];
     const testoCpv = cpv ? `${esc(cpv.descrizione || "")}${cpv.codice ? ` (CPV ${esc(cpv.codice)})` : ""}` : "";
@@ -258,32 +319,77 @@
     const documenti = urlSicuro(a.link_documenti);
     return `<li class="avviso">
       ${tempo(a)}
-      <div>
+      <div class="corpo">
+        <span class="etichetta-tipo">${esc(TIPI[a.tipo] || a.tipo)}</span>
         <h3 class="oggetto">${esc(a.titolo || "Oggetto non indicato")}</h3>
         <p class="ente">${esc(a.committente || "Ente non indicato")}</p>
         <ul class="dettagli">${dettagli}</ul>
         ${testoCpv ? `<p class="cpv">${testoCpv}</p>` : ""}
       </div>
       <div class="collegamenti">
-        ${anac ? `<a class="principale" href="${esc(anac)}" target="_blank" rel="noopener">Avviso ufficiale<span class="vh">: ${breve}</span></a>` : ""}
-        ${documenti ? `<a href="${esc(documenti)}" target="_blank" rel="noopener">Documenti di gara<span class="vh">: ${breve}</span></a>` : ""}
+        ${anac ? `<a class="btn btn-primario" href="${esc(anac)}" target="_blank" rel="noopener">Avviso ufficiale${ICONA_ESTERNO}<span class="vh">: ${breve}</span></a>` : ""}
+        ${documenti ? `<a class="btn" href="${esc(documenti)}" target="_blank" rel="noopener">Documenti di gara${ICONA_ESTERNO}<span class="vh">: ${breve}</span></a>` : ""}
       </div>
     </li>`;
   }
 
-  function render() {
+  function chipAttivi() {
+    const chip = [];
+    const v = (s) => $(s).value;
+    if (v("#f-testo").trim()) chip.push(["q", `«${v("#f-testo").trim()}»`]);
+    if (v("#f-provincia")) chip.push(["prov", `Provincia di ${v("#f-provincia")}`]);
+    if (v("#f-tipo")) chip.push(["tipo", TIPI[v("#f-tipo")]]);
+    if (v("#f-importo")) chip.push(["imp", NOMI_FASCE[v("#f-importo")]]);
+    if (giornoScelto !== null) chip.push(["giorno", `scadenza ${fmtGiorno.format(new Date(oggi() + giornoScelto * GIORNO_MS))}`]);
+    if (!$("#f-aperti").checked) chip.push(["tutti", "anche scaduti"]);
+    return chip;
+  }
+
+  function render(azzeraPagina = true) {
+    if (azzeraPagina) mostrati = PASSO;
     const base = filtra();
     disegnaStriscia(base);
     const lista = giornoScelto === null ? base.slice() : base.filter((a) => a._giorni === giornoScelto);
-    lista.sort((x, y) => ((x._giorni ?? 1e9) - (y._giorni ?? 1e9)) || String(y.pubblicato).localeCompare(String(x.pubblicato)));
+    const ordine = $("#f-ordine").value;
+    if (ordine === "recenti") lista.sort((x, y) => String(y.pubblicato).localeCompare(String(x.pubblicato)) || ((x._giorni ?? 1e9) - (y._giorni ?? 1e9)));
+    else if (ordine === "importo") lista.sort((x, y) => (y.valore ?? -1) - (x.valore ?? -1));
+    else lista.sort((x, y) => ((x._giorni ?? 1e9) - (y._giorni ?? 1e9)) || String(y.pubblicato).localeCompare(String(x.pubblicato)));
 
-    let testo = `${lista.length} ${lista.length === 1 ? "avviso" : "avvisi"}`;
-    if (giornoScelto !== null) testo += ` in scadenza ${fmtGiorno.format(new Date(oggi() + giornoScelto * GIORNO_MS))}`;
-    $("#conteggio").innerHTML = esc(testo) +
-      (giornoScelto !== null ? ` <button type="button" id="tutte-date">Mostra tutte le date</button>` : "");
+    const chip = chipAttivi();
+    $("#conteggio").innerHTML = `<strong>${lista.length.toLocaleString("it-IT")} ${lista.length === 1 ? "avviso" : "avvisi"}</strong>` +
+      chip.map(([k, t]) => `<button type="button" class="chip-filtro" data-togli="${k}">${esc(t)} <span aria-hidden="true">×</span><span class="vh">: rimuovi filtro</span></button>`).join("");
+    $("#azzera").hidden = !chip.length;
 
-    $("#elenco").innerHTML = lista.length ? lista.map(riga).join("")
-      : `<li class="vuoto">Nessun avviso con questi filtri. Togli un filtro o cerca un altro comune o ente.</li>`;
+    $("#elenco").innerHTML = lista.length ? lista.slice(0, mostrati).map(riga).join("")
+      : `<li class="vuoto"><p><strong>Nessun avviso con questi filtri.</strong></p><p>Togli un filtro o cerca un altro comune o ente.</p><p class="azioni"><button class="btn" type="button" data-togli="tutto">Azzera filtri</button></p></li>`;
+    const restanti = lista.length - mostrati;
+    $("#mostra-altri").hidden = restanti <= 0;
+    $("#mostra-altri").textContent = `Mostra altri ${Math.min(PASSO, restanti)} (ne restano ${restanti.toLocaleString("it-IT")})`;
+    scriviUrl();
+  }
+
+  function togli(k) {
+    if (k === "q" || k === "tutto") $("#f-testo").value = "";
+    if (k === "prov" || k === "tutto") $("#f-provincia").value = "";
+    if (k === "tipo" || k === "tutto") $("#f-tipo").value = "";
+    if (k === "imp" || k === "tutto") $("#f-importo").value = "";
+    if (k === "giorno" || k === "tutto") giornoScelto = null;
+    if (k === "tutti" || k === "tutto") $("#f-aperti").checked = true;
+    render();
+  }
+
+  function numeriChiave() {
+    const aperti = avvisi.filter((a) => a._giorni !== null && a._giorni >= 0);
+    const valore = aperti.reduce((s, a) => s + (typeof a.valore === "number" ? a.valore : 0), 0);
+    const ultimo = avvisi.reduce((m, a) => (a.pubblicato > m ? a.pubblicato : m), "");
+    const riempi = (id, t) => { const el = $(id); el.textContent = t; el.classList.remove("scheletro"); };
+    riempi("#n-aperti", aperti.length.toLocaleString("it-IT"));
+    riempi("#n-settimana", aperti.filter((a) => a._giorni <= 7).length.toLocaleString("it-IT"));
+    riempi("#n-valore", "");
+    $("#n-valore").innerHTML = milioni(valore);
+    $("#n-valore").title = euro.format(valore);
+    riempi("#n-nuovi", avvisi.filter((a) => a.pubblicato === ultimo).length.toLocaleString("it-IT"));
+    if (ultimo) $("#n-nuovi").previousElementSibling.textContent = `Pubblicati il ${fmtData.format(new Date(isoUTC(ultimo))).replace(/ \d{4}$/, "")}`;
   }
 
   $("#striscia").addEventListener("click", (e) => {
@@ -295,9 +401,21 @@
     const stesso = document.querySelector(`#striscia [data-g="${g}"]`);
     if (stesso) stesso.focus();
   });
+  document.addEventListener("click", (e) => {
+    const b = e.target.closest("[data-togli]");
+    if (b) togli(b.dataset.togli);
+  });
+  $("#azzera").addEventListener("click", () => togli("tutto"));
+  $("#mostra-altri").addEventListener("click", () => { mostrati += PASSO; render(false); });
 
-  $("#conteggio").addEventListener("click", (e) => {
-    if (e.target.id === "tutte-date") { giornoScelto = null; render(); }
+  $("#form-comune").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const q = norm($("#vai-comune").value.trim());
+    if (!q) return;
+    const lista = Object.values(comuni);
+    const trovato = lista.find((c) => norm(c.nome) === q) || lista.find((c) => norm(c.nome).startsWith(q)) || lista.find((c) => norm(c.nome).includes(q));
+    if (trovato) location.href = `comune/${trovato.slug}/`;
+    else location.href = `comuni/`;
   });
 
   async function avvia() {
@@ -307,26 +425,28 @@
         ["dati/recenti.json", "dati/comuni.json", "dati/meta.json"].map(carica));
       elencoComuni.forEach((c) => { comuni[c.slug] = c; });
       const province = [...new Set(elencoComuni.map((c) => c.provincia))].sort((a, b) => a.localeCompare(b, "it"));
-      $("#f-provincia").insertAdjacentHTML("beforeend",
-        province.map((p) => `<option value="${esc(p)}">${esc(p)}</option>`).join(""));
+      $("#f-provincia").insertAdjacentHTML("beforeend", province.map((p) => `<option value="${esc(p)}">${esc(p)}</option>`).join(""));
+      $("#elenco-comuni").innerHTML = elencoComuni.map((c) => `<option value="${esc(c.nome)}">`).join("");
       avvisi = recenti;
       avvisi.forEach(prepara);
       if (meta && meta.generato) $("#aggiornato").textContent = `Aggiornato il ${fmtAgg.format(new Date(meta.generato))}`;
-      ["#f-testo", "#f-provincia", "#f-tipo", "#f-importo", "#f-aperti"].forEach((s) => {
-        $(s).addEventListener("input", render);
-        $(s).addEventListener("change", render);
+      leggiUrl();
+      ["#f-testo", "#f-provincia", "#f-tipo", "#f-importo", "#f-aperti", "#f-ordine"].forEach((s) => {
+        $(s).addEventListener(s === "#f-testo" ? "input" : "change", () => render());
       });
+      numeriChiave();
       render();
     } catch (err) {
       $("#aggiornato").textContent = "Dati non disponibili in questo momento";
-      $("#elenco").innerHTML = `<li class="vuoto">Non riesco a caricare i dati. Ricarica la pagina tra qualche minuto; nel frattempo gli avvisi sono consultabili sulla piattaforma ANAC.</li>`;
+      document.querySelectorAll(".numeri dd").forEach((d) => { d.textContent = "—"; d.classList.remove("scheletro"); });
+      $("#elenco").innerHTML = `<li class="vuoto"><p><strong>Non riesco a caricare i dati.</strong></p><p>Ricarica la pagina tra qualche minuto; nel frattempo gli avvisi sono consultabili sulla <a href="https://pubblicitalegale.anticorruzione.it" rel="noopener">piattaforma ANAC</a>.</p><p class="azioni"><button class="btn" type="button" onclick="location.reload()">Riprova</button></p></li>`;
     }
   }
 
   avvia();
 })();
 </script>
-<!-- Contatore visite Cloudflare Web Analytics: sostituisci e7b35b91883449e0b1b69fbca05fce21 con il tuo token -->
+<!-- Contatore visite Cloudflare Web Analytics -->
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "e7b35b91883449e0b1b69fbca05fce21"}'></script>
 </body>
 </html>
