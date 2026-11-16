@@ -1,5 +1,5 @@
 {
- "generato": "2026-11-16T18:46:58+00:00",
+ "generato": "2026-11-16T23:56:18+00:00",
  "fonte": "ANAC - Piattaforma di Pubblicita' a Valore Legale (pubblicitalegale.anticorruzione.it)",
  "licenza_dati": "CC BY-SA 4.0 - https://creativecommons.org/licenses/by-sa/4.0/",
  "attribuzione": "Appalti Toscana (github.com/emanuelc89/appalti-toscana), elaborazione su dati ANAC",
@@ -43,14 +43,14 @@
    }
   },
   "8a": {
-   "raccolti": 9289,
-   "uniche": 9285,
+   "raccolti": 9295,
+   "uniche": 9291,
    "toscana": {
-    "B": 484
+    "B": 485
    }
   }
  },
- "archivio_nuovi_record": 260,
+ "archivio_nuovi_record": 0,
  "archivio_nuove_versioni": 0,
  "recenti": 377
 }
